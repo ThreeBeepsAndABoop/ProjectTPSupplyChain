@@ -30,8 +30,6 @@ public class SpawnVentController : MonoBehaviour
         if (currentTime <= 0) {
             currentTime = timeBetweenSpawns;
 
-            GameManager.Instance.RequestPlayNewBoxSoundSound();
-
             var gameObject = Instantiate(boxPrefab, point.transform.position, Quaternion.identity);
             var numberOfItems = Mathf.Max(Mathf.Min(numberOfItemsToPack, 18), 0);
 

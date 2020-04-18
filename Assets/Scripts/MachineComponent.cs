@@ -27,7 +27,7 @@ public class MachineComponent : MonoBehaviour
     {
         GameObject go = Instantiate(DebugLabelPrefab);
         go.transform.position = transform.position + new Vector3(0.0f, 0.3f, 0.0f);
-        go.transform.parent = transform;
+        go.transform.SetParent(transform);
         go.transform.name = "Debug Label";
         _debugText = go.GetComponent<TextMeshPro>();
     }
@@ -39,9 +39,16 @@ public class MachineComponent : MonoBehaviour
     }
 
     void UpdateCondition() {
-        Condition -= Math.Max(BaseDeteriorationRate() * Time.deltaTime, 0);
+        Condition = Math.Max(Condition - BaseDeteriorationRate() * Time.deltaTime, 0);
 
-        _debugText.text = string.Format("Condition: {0:0.00}%", Condition * 100);
+        if (GameManager.Instance.Debug)
+        {
+            _debugText.text = string.Format("Condition: {0:0.00}%", Condition * 100);
+        }
+        else
+        {
+            _debugText.gameObject.SetActive(false);
+        }
     }
 
     // measured in condition loss per second
