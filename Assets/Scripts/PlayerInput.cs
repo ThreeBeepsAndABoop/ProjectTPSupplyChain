@@ -29,7 +29,6 @@ public class PlayerInput : MonoBehaviour
                 RaycastHit hitInfo;
                 if (Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hitInfo, range, raycastMask))
                 {
-                    Debug.Log("Hit " + hitInfo.collider.gameObject);
                     Interactable interactable = hitInfo.collider.gameObject.GetComponent<Interactable>();
                     if (interactable != null)
                     {
