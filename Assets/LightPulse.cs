@@ -9,7 +9,6 @@ public class LightPulse : MonoBehaviour
     float startingIntensity;
     float time;
 
-    public float duration = 1.0f;
     public AnimationCurve translationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     // Start is called before the first frame update
@@ -17,7 +16,6 @@ public class LightPulse : MonoBehaviour
     {
         light = GetComponent<Light>();
         startingIntensity = light.intensity;
-        pulseIncreasing = true;
     }
 
     bool pulseIncreasing;
@@ -25,14 +23,7 @@ public class LightPulse : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        float max = translationCurve.Evaluate(duration);
-        float offset = pulseIncreasing ? translationCurve.Evaluate(time / duration) : (max - translationCurve.Evaluate(time / duration));
-        light.intensity = startingIntensity + offset;
-
-        if (time > duration)
-        {
-            pulseIncreasing = !pulseIncreasing;
-            time = 0;
-        }
+        float duration = translationCurve.keys[translationCurve.keys.Length - 1].time;
+        light.intensity = startingIntensity + translationCurve.Evaluate(time / duration);
     }
 }
