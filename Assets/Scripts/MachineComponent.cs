@@ -22,6 +22,10 @@ public class MachineComponent : MonoBehaviour
     void Start()
     {
         GameObject go = Instantiate(DebugLabelPrefab);
+        go.transform.position = transform.position + new Vector3(0.0f, 0.25f, 0.0f);
+        go.transform.parent = transform;
+
+        go.transform.name = "Debug Label";
     }
 
     // Update is called once per frame

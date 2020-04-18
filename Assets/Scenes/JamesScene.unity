@@ -2073,6 +2073,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Condition: 0
   Type: 0
+  DebugLabelPrefab: {fileID: 3654153380686865677, guid: 70ebd413bb89d4faaaa7199c88de3873,
+    type: 3}
 --- !u!1 &2058236876
 GameObject:
   m_ObjectHideFlags: 0
