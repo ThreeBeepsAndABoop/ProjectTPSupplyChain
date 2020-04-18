@@ -5,16 +5,19 @@ using UnityEngine;
 public class Grabbable : Interactable
 {
     public bool Grabbed = false;
+    public bool InPlayerInventory;
 
     public override void Interact(RaycastHit hitInfo)
     {
-        GameManager.Instance.GrabIt.Grab(hitInfo, this);
+        //GameManager.Instance.GrabIt.Grab(hitInfo.distance, this);
+        if(!InPlayerInventory)
+        {
+            GameManager.Instance.PlayerInventory.PickUp(this, hitInfo.distance);
+        }
     }
 
     public override void InteractSecondary(RaycastHit hitInfo)
     {
-
-        Debug.Log("Yeet");
-        GameManager.Instance.GrabIt.Yeet(this);
+        //GameManager.Instance.GrabIt.Yeet(this);
     }
 }

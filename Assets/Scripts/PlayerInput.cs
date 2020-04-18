@@ -18,11 +18,29 @@ public class PlayerInput : MonoBehaviour
     const int range = 4;
     private void handleGameInteraction()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            GameManager.Instance.PlayerInventory.SelectItem(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            GameManager.Instance.PlayerInventory.SelectItem(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            GameManager.Instance.PlayerInventory.SelectItem(3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            GameManager.Instance.PlayerInventory.SelectItem(4);
+        }
+
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
         {
-            if (GameManager.Instance.GrabIt.GrabbedObject != null)
+            Grabbable selectedItem = GameManager.Instance.PlayerInventory.GetSelectedItem();
+            if (selectedItem != null)
             {
-                GameManager.Instance.GrabIt.ReleaseGrabbed();
+                GameManager.Instance.PlayerInventory.Drop(selectedItem);
             }
             else
             {
@@ -41,9 +59,10 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Q))
         {
-            if (GameManager.Instance.GrabIt.GrabbedObject != null)
+            Grabbable selectedItem = GameManager.Instance.PlayerInventory.GetSelectedItem();
+            if (selectedItem != null)
             {
-                GameManager.Instance.GrabIt.YeetGrabbed();
+                GameManager.Instance.PlayerInventory.Drop(selectedItem);
             }
             else
             {

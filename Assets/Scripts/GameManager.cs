@@ -10,11 +10,13 @@ public class GameManager : MonoBehaviour
     private GameManager() {}
     public static GameManager Instance { get; private set; }
 
-    public GameObject playerFPSController;
+    public GameObject PlayerFPSController;
+
+    public PlayerInventory PlayerInventory;
 
     public bool Debug = true;
     public bool PlayBackgroundMusic = true;
-    public bool PlayFactoryAmbience = true;
+    public bool PlayBackgroundAmbience = true;
 
     public AudioClip ButtonClickSound;
     public AudioClip MachineSound;
@@ -42,6 +44,14 @@ public class GameManager : MonoBehaviour
         musicAudioSource.loop = true;
         musicAudioSource.clip = BackgroundMusic;
         musicAudioSource.volume = 0.17f;
+        musicAudioSource.Play();
+    }
+
+    public void RequestPlayBackgroundAmbience()
+    {
+        musicAudioSource.loop = true;
+        musicAudioSource.clip = BackgroundAmbience;
+        musicAudioSource.volume = 0.45f;
         musicAudioSource.Play();
     }
 
@@ -77,22 +87,28 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Instance = this;
-        playerFPSController = GameObject.Find("FPSController").gameObject;
+        PlayerFPSController = GameObject.Find("Player").gameObject;
+        PlayerInventory = PlayerFPSController.GetComponent<PlayerInventory>();
         timeleft = totalGameTime;
 
-        GameObject firstPersonCharacter = playerFPSController.transform.Find("FirstPersonCharacter").gameObject;
+        GameObject firstPersonCharacter = PlayerFPSController.transform.Find("FirstPersonCharacter").gameObject;
         GrabIt = firstPersonCharacter.GetComponent<GrabIt>();
         if (!GrabIt)
         {
             GrabIt = firstPersonCharacter.AddComponent<GrabIt>();
         }
 
-        loudAudioSource = playerFPSController.AddComponent<AudioSource>();
-        musicAudioSource = playerFPSController.AddComponent<AudioSource>();
+        loudAudioSource = PlayerFPSController.AddComponent<AudioSource>();
+        musicAudioSource = PlayerFPSController.AddComponent<AudioSource>();
 
         if (PlayBackgroundMusic)
         {
             RequestPlayBackgroundMusic();
+        }
+
+        if (PlayBackgroundAmbience)
+        {
+            RequestPlayBackgroundAmbience();
         }
     }
 

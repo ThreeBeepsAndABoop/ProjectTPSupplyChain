@@ -155,7 +155,7 @@ namespace Lightbug.GrabIt
             Release(grabbed);
         }
 
-        public void Grab(RaycastHit hitInfo, Grabbable grabbable)
+        public void Grab(float distance, Grabbable grabbable)
         {
             if(grabbed == grabbable)
             {
@@ -165,7 +165,7 @@ namespace Lightbug.GrabIt
             Rigidbody rb = grabbable.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                Set(rb, hitInfo.distance);
+                Set(rb, distance);
                 m_grabbing = true;
             }
         }
