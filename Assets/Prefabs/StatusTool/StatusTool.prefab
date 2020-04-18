@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 40
   m_Viewport: {fileID: 544559777234241531}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 544559777030097188}
@@ -270,6 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 544559776045339027}
+  - component: {fileID: 4194757744580509399}
   m_Layer: 0
   m_Name: StatusTool
   m_TagString: Untagged
@@ -294,6 +295,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4194757744580509399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544559776045339024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5a718c38dc67848828dc2193303cc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpsController: {fileID: 0}
+  crosshair: {fileID: 0}
+  closedPosition: {x: 0, y: 0, z: 0}
+  closedRotation: {x: 0, y: 0, z: 0, w: 0}
+  openPosition: {x: 0, y: 0, z: 0}
+  openRotation: {x: 0, y: 0, z: 0, w: 0}
+  animationDuration: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animationProgress: 0
+  isOpen: 0
 --- !u!1 &544559776171509401
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.018748725, y: 0.06536865}
+  m_AnchoredPosition: {x: -0.018748725, y: 0}
   m_SizeDelta: {x: 0.018724699, y: 1000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &544559776661182002
@@ -652,7 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 0.15686275}
+  m_Color: {r: 0, g: 1, b: 0, a: 0.11764706}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -680,18 +708,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 2
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 0, g: 1, b: 0, a: 0.5019608}
+    m_HighlightedColor: {r: 0, g: 1, b: 0, a: 0.78431374}
+    m_PressedColor: {r: 0, g: 1, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 1, b: 0, a: 1}
+    m_DisabledColor: {r: 0, g: 1, b: 0, a: 0.078431375}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -709,7 +737,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 544559776171509403}
   m_HandleRect: {fileID: 544559776171509400}
   m_Direction: 2
-  m_Value: 0.9997276
+  m_Value: 1
   m_Size: 0.76
   m_NumberOfSteps: 0
   m_OnValueChanged:

@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Screen
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _GLOSSYREFLECTIONS_OFF
-  m_LightmapFlags: 4
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION _GLOSSYREFLECTIONS_OFF
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
@@ -63,9 +63,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _GlossMapScale: 1
-    - _Glossiness: 0.598
+    - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Metallic: 0.195
+    - _Metallic: 0.96699995
     - _Mode: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -81,6 +81,6 @@ Material:
     - _UseUIAlphaClip: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.12264148, g: 0.12264148, b: 0.12264148, a: 0.7058824}
-    - _EmissionColor: {r: 0, g: 0.05882353, b: 0.5, a: 1}
+    - _Color: {r: 0.12264145, g: 0.12264145, b: 0.12264145, a: 0.7058824}
+    - _EmissionColor: {r: 0, g: 0.062499978, b: 0.0024509805, a: 1}
     - _Specular: {r: 0, g: 0, b: 0, a: 0}
