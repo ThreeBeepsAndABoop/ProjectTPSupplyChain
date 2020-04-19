@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     public PlayerInventory PlayerInventory;
 
+    public ResourceManager ResourceManager;
+
     public bool Debug = true;
     public bool PlayBackgroundMusic = true;
     public bool PlayBackgroundAmbience = true;

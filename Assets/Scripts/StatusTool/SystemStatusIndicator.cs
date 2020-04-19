@@ -7,7 +7,7 @@ using System;
 public class SystemStatusIndicator : MonoBehaviour
 {
 
-    public string systemName;
+    public ResourceType type;
 
     [Range(0.0f, 1.0f)]
     public double current;
@@ -30,6 +30,12 @@ public class SystemStatusIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /// Compute
+        Resource res = GameManager.Instance.ResourceManager.ResourceForType(type);
+        current = Math.Max(Math.Min(res.currentAmount / res.maxAmount, 1), 0);
+        lowWatermark = Math.Max(Math.Min(res.requiredAmount / res.maxAmount, 1), 0);
+
+        /// Draw
         TextMeshProUGUI systemStatusTMP = systemStatusText.GetComponent<TextMeshProUGUI>();
         string statusPercent = ((int)Math.Round(current * 100)).ToString() + "%";
         string statusQualitative;
@@ -53,7 +59,7 @@ public class SystemStatusIndicator : MonoBehaviour
         systemStatusTMP.color = color;
 
         TextMeshProUGUI systemNameTMP = systemNameText.GetComponent<TextMeshProUGUI>();
-        systemNameTMP.text = systemName;
+        systemNameTMP.text = res.name;
         systemNameTMP.color = color;
 
         TextMeshProUGUI systemProgressTMP = systemProgressText.GetComponent<TextMeshProUGUI>();
