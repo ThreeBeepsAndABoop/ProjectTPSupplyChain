@@ -53,10 +53,10 @@ MonoBehaviour:
   bufferedResources: []
   requiredResources:
   - resourceType: 1
-    amount: 10
+    amount: 50
   suppliableResources: []
   machineStatus: 0
-  requiredTime: 0
+  requiredTime: 1
 --- !u!1001 &1067024349381882279
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -52,11 +52,11 @@ MonoBehaviour:
   componentRequests: []
   bufferedResources: []
   requiredResources:
-  - resourceType: 0
+  - resourceType: 2
     amount: 100
   suppliableResources: []
   machineStatus: 0
-  requiredTime: 0
+  requiredTime: 1
 --- !u!1001 &7792997468562725426
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -56,7 +56,7 @@ MonoBehaviour:
     amount: 100
   suppliableResources: []
   machineStatus: 0
-  requiredTime: 0
+  requiredTime: 1
 --- !u!1001 &2551680073982152699
 PrefabInstance:
   m_ObjectHideFlags: 0
