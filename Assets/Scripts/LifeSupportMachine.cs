@@ -1,39 +1,20 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class EngineMachine : MachineController
+public class LifeSupportMachine : MachineController
 {
-    public Light reactionGlow;
-    public LinearTranslation engineFlapTranslationOne;
-    public LinearTranslation engineFlapTranslationTwo;
-
-
-    private StatusPoleLightColor _previousStatus;
-
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
-
-        _previousStatus = statusPole.statusColor;
     }
 
     // Update is called once per frame
     void Update()
     {
         base.Update();
-
-        if(statusPole.statusColor != _previousStatus)
-        {
-            if (reactionGlow == null ) { return; }
-            _previousStatus = statusPole.statusColor;
-
-            reactionGlow.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
-            engineFlapTranslationOne.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
-            engineFlapTranslationTwo.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
-        }
     }
 
     override public MachineStatus UpdateResourceRequestsFromCounts(Dictionary<MachineComponentType, MachineComponentSummaryRequest> componentCounts)
@@ -63,7 +44,8 @@ public class EngineMachine : MachineController
                 if (lowEffMode)
                 {
                     cmp.Condition -= 0.01;
-                } else
+                }
+                else
                 {
                     cmp.Condition -= 0.001;
                 }
@@ -72,14 +54,14 @@ public class EngineMachine : MachineController
 
 
         // Determine what we need
-        var speed = 0.5 + (componentCounts[MachineComponentType.Coolant].Percent() / 2);
-        var charge = componentCounts[MachineComponentType.Battery].Percent();
+        //var speed = 0.5 + (componentCounts[MachineComponentType.Coolant].Percent() / 2);
+        //var charge = componentCounts[MachineComponentType.Battery].Percent();
 
-        requiredResources.Clear();
-        requiredResources.Add(new ResourceRequest(ResourceType.BatteryStorage, (int)Math.Round(charge * 1000)));
+        //requiredResources.Clear();
+        //requiredResources.Add(new ResourceRequest(ResourceType.BatteryStorage, (int)Math.Round(charge * 1000)));
 
-        suppliableResources.Clear();
-        suppliableResources.Add(new ResourceRequest(ResourceType.FTLJumpDriveCharge, (int)Math.Round(charge * speed * 200)));
+        //suppliableResources.Clear();
+        //suppliableResources.Add(new ResourceRequest(ResourceType.FTLJumpDriveCharge, (int)Math.Round(charge * speed * 200)));
 
 
 
@@ -88,10 +70,11 @@ public class EngineMachine : MachineController
         if (lowEffMode)
         {
             return MachineStatus.LowEfficency;
-        } else
+        }
+        else
         {
             return MachineStatus.Good;
         }
-        
+
     }
 }
