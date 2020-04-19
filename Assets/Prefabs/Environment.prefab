@@ -349,10 +349,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1147436343344139583}
     m_Modifications:
+    - target: {fileID: 3211017582551929665, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
+        type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3211017583330345824, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
         type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211017583330345824, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
+        type: 3}
+      propertyPath: prewarm
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3211017583429202090, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
         type: 3}
@@ -363,6 +373,11 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211017583429202090, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
+        type: 3}
+      propertyPath: prewarm
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3211017583722219457, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
         type: 3}
