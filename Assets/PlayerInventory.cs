@@ -212,6 +212,7 @@ public class PlayerInventory : MonoBehaviour
         {
             if(index == SelectedItemIndex)
             {
+                _selectedItemText.text = "";
                 _quitPanelGO.SetActive(false);
             }
             Debug.Log("Inventory remove " + grabbable + " at index " + index);
