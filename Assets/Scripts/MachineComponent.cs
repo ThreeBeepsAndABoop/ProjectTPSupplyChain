@@ -27,7 +27,7 @@ public class MachineComponent : MonoBehaviour
     {
         GameObject go = Instantiate(DebugLabelPrefab);
         go.transform.position = transform.position + new Vector3(0.0f, 0.3f, 0.0f);
-        go.transform.SetParent(transform);
+        go.transform.SetParent(transform.Find("Model"));
         go.transform.name = "Debug Label";
         _debugText = go.GetComponent<TextMeshPro>();
     }

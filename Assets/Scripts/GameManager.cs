@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private GameManager() {}
     public static GameManager Instance { get; private set; }
 
-    public GameObject PlayerFPSController;
+    public GameObject Player;
 
     public PlayerInventory PlayerInventory;
 
@@ -86,22 +86,22 @@ public class GameManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Instance = this;
-        PlayerFPSController = GameObject.Find("Player").gameObject;
-        PlayerInventory = PlayerFPSController.GetComponent<PlayerInventory>();
+        Player = GameObject.Find("Player").gameObject;
+        PlayerInventory = Player.GetComponent<PlayerInventory>();
         timeleft = totalGameTime;
 
-        GameObject firstPersonCharacter = PlayerFPSController.transform.Find("FirstPersonCharacter").gameObject;
+        GameObject firstPersonCharacter = Player.transform.Find("FirstPersonCharacter").gameObject;
         GrabIt = firstPersonCharacter.GetComponent<GrabIt>();
         if (!GrabIt)
         {
             GrabIt = firstPersonCharacter.AddComponent<GrabIt>();
         }
 
-        loudAudioSource = PlayerFPSController.AddComponent<AudioSource>();
-        musicAudioSource = PlayerFPSController.AddComponent<AudioSource>();
+        loudAudioSource = Player.AddComponent<AudioSource>();
+        musicAudioSource = Player.AddComponent<AudioSource>();
 
         if (PlayBackgroundMusic)
         {

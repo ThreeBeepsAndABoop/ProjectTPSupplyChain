@@ -1,12 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
     private Grabbable[] _inventory;
 
-    public int SelectedItemIndex = 0;
+    private Transform _itemSocketTransform;
+
+    private GameObject _inventorySlotsGO;
+    private Image[] _inventorySlots;
+    private RectTransform _inventoryHighlight;
+    private int[] _cachedLayers;
+
+    public int SelectedItemIndex;
     public int InventoryCapacity = 4;
     public int InventoryCount { get { return _inventory.Length; } }
 
@@ -45,22 +54,49 @@ public class PlayerInventory : MonoBehaviour
         }
 
         if (index != SelectedItemIndex) {
+            Grabbable oldSelectedItem = GetSelectedItem();
+            HideSelectedItem();
             DeselectSelectedItem();
         }
-        
+
         SelectedItemIndex = index;
+        _inventoryHighlight.anchoredPosition = new Vector3(50 + 90 * index, 0, 0);// fucking amazing.
+
+        ShowSelectedItem();
         Grabbable newlySelectedItem = GetSelectedItem();
+
         if (!newlySelectedItem)
         {
             return true;
         }
 
-        if (!newlySelectedItem.Grabbed && GameManager.Instance.GrabIt.GrabbedObject == null)
+        return true;
+    }
+
+    private int _savedLayer;
+    private void HideSelectedItem()
+    {
+        Grabbable selectedItem = GetSelectedItem();
+        if (!selectedItem)
         {
-            GameManager.Instance.GrabIt.Grab(distance, newlySelectedItem);
+            return;
         }
 
-        return true;
+
+        selectedItem.transform.Find("Model").gameObject.SetActive(false);
+    }
+    
+    private void ShowSelectedItem()
+    {
+        Grabbable selectedItem = GetSelectedItem();
+
+        if (!selectedItem)
+        {
+            return;
+        }
+
+        selectedItem.transform.Find("Model").gameObject.SetActive(true);
+        selectedItem.transform.SetParent(_itemSocketTransform);
     }
 
     private bool DeselectSelectedItem()
@@ -70,6 +106,11 @@ public class PlayerInventory : MonoBehaviour
         if (selectedItem == null)
         {
             return false;
+        }
+
+        foreach (Transform trans in selectedItem.transform.GetComponentsInChildren<Transform>(true))
+        {
+            trans.gameObject.layer = _cachedLayers[SelectedItemIndex];
         }
 
         // Loop forward to find next item to select
@@ -118,8 +159,31 @@ public class PlayerInventory : MonoBehaviour
 
         Debug.Log("Inventory add " + grabbable + " at index " + firstFreeIndex);
         _inventory[firstFreeIndex] = grabbable;
+        _cachedLayers[firstFreeIndex] = grabbable.gameObject.layer;
         grabbable.InPlayerInventory = true;
+
+        foreach (Transform trans in grabbable.transform.GetComponentsInChildren<Transform>(true))
+        {
+            trans.gameObject.layer = 11;
+        }
+
+        var rbs = grabbable.GetComponentsInChildren<Rigidbody>();
+        foreach (var rb in rbs)
+        {
+            rb.isKinematic = true;
+            rb.detectCollisions = false;
+        }
+
+        grabbable.transform.parent = _itemSocketTransform;
+        grabbable.transform.localPosition = Vector3.zero;
+        grabbable.transform.localRotation = Quaternion.identity;
+
         SelectItem(firstFreeIndex, distance);
+
+
+        _inventorySlots[firstFreeIndex].enabled = true;
+        _inventorySlots[firstFreeIndex].sprite = grabbable.icon;
+
         return true;
     }
 
@@ -140,13 +204,25 @@ public class PlayerInventory : MonoBehaviour
             if (grabbable == GetSelectedItem())
             {
                 DeselectSelectedItem();
-                if (GameManager.Instance.GrabIt.GrabbedObject == grabbable.gameObject)
-                {
-                    GameManager.Instance.GrabIt.ReleaseGrabbed();
-                }
             }
             _inventory[index] = null;
             grabbable.InPlayerInventory = false;
+            grabbable.transform.parent = null;
+            var rbs = grabbable.GetComponentsInChildren<Rigidbody>();
+            foreach (var rb in rbs)
+            {
+                rb.isKinematic = false;
+                rb.detectCollisions = true;
+            }
+
+            foreach (Transform trans in grabbable.transform.GetComponentsInChildren<Transform>(true))
+            {
+                trans.gameObject.layer = _cachedLayers[index];
+            }
+
+            _inventorySlots[index].enabled = false;
+            _inventorySlots[index].sprite = null;
+
             return true;
         }
         else
@@ -159,6 +235,25 @@ public class PlayerInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject player = GameManager.Instance.Player;
+        _itemSocketTransform = player.transform.Find("FirstPersonCharacter/ItemSocket");
+        _inventorySlotsGO = GameObject.Find("InventorySlots");
+
+        _inventoryHighlight = _inventorySlotsGO.transform.Find("HIGHLIGHT").GetComponent<RectTransform>();
+
+        _inventorySlots = new Image[InventoryCapacity];
+        for (int i = 0; i < _inventorySlotsGO.transform.childCount; i++)
+        {
+            Transform child = _inventorySlotsGO.transform.GetChild(i);
+            if (child.name.Contains("SLOT_"))
+            {
+                int index = int.Parse(child.name.Split('_')[1]);
+                _inventorySlots[index] = child.Find("Image").GetComponent<Image>();
+                Debug.Log("Found inventory slot " + _inventorySlots[index]);
+            }
+        }
+
+        _cachedLayers = new int[InventoryCapacity];
         _inventory = new Grabbable[InventoryCapacity];
     }
 }

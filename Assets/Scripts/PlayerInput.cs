@@ -20,19 +20,19 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            GameManager.Instance.PlayerInventory.SelectItem(1);
+            GameManager.Instance.PlayerInventory.SelectItem(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            GameManager.Instance.PlayerInventory.SelectItem(2);
+            GameManager.Instance.PlayerInventory.SelectItem(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            GameManager.Instance.PlayerInventory.SelectItem(3);
+            GameManager.Instance.PlayerInventory.SelectItem(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            GameManager.Instance.PlayerInventory.SelectItem(4);
+            GameManager.Instance.PlayerInventory.SelectItem(3);
         }
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))

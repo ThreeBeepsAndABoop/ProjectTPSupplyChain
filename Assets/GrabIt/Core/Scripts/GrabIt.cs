@@ -176,7 +176,7 @@ namespace Lightbug.GrabIt
             m_isHingeJoint = target.GetComponent<HingeJoint>() != null;
 
             m_targetLayer = m_targetRB.gameObject.layer;
-            m_targetRB.gameObject.layer = 13;
+            m_targetRB.gameObject.layer = 10;
 
             grabbed = m_targetRB.GetComponent<Grabbable>();
             grabbed.Grabbed = true;

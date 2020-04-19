@@ -7,6 +7,8 @@ public class Grabbable : Interactable
     public bool Grabbed = false;
     public bool InPlayerInventory;
 
+    public Sprite icon;
+
     public override void Interact(RaycastHit hitInfo)
     {
         //GameManager.Instance.GrabIt.Grab(hitInfo.distance, this);
