@@ -194,6 +194,9 @@ public class PlayerInventory : MonoBehaviour
         _inventorySlots[firstFreeIndex].sprite = grabbable.icon;
 
         Count += 1;
+
+        GameManager.Instance.RequestPlayPickUpSound();
+
         return true;
     }
 
@@ -235,6 +238,7 @@ public class PlayerInventory : MonoBehaviour
             _inventorySlots[index].sprite = null;
 
             Count -= 1;
+            GameManager.Instance.RequestPlayDropSound();
             return true;
         }
         else

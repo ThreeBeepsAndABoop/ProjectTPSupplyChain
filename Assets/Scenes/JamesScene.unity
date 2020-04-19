@@ -943,6 +943,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3647458190421851979, guid: 4982b1663ae598740a66a367705d594f,
         type: 3}
+    - target: {fileID: 3866545021136074960, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
+        type: 3}
+      propertyPath: DropSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 933a43c507d9f4a599981f82514a27b1, type: 3}
+    - target: {fileID: 3866545021136074960, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
+        type: 3}
+      propertyPath: PickUpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 88da4f2c6584f42088130931242a162a, type: 3}
+    - target: {fileID: 3866545021136074960, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
+        type: 3}
+      propertyPath: TickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 99213f2df2fba49a4a73c4aaca245632, type: 3}
     - target: {fileID: 3866545021136074961, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
         type: 3}
       propertyPath: m_Name

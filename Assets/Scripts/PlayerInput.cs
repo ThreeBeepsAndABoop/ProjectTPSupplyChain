@@ -26,18 +26,22 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            GameManager.Instance.RequestPlayTickSound();
             GameManager.Instance.PlayerInventory.SelectItem(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            GameManager.Instance.RequestPlayTickSound();
             GameManager.Instance.PlayerInventory.SelectItem(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            GameManager.Instance.RequestPlayTickSound();
             GameManager.Instance.PlayerInventory.SelectItem(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            GameManager.Instance.RequestPlayTickSound();
             GameManager.Instance.PlayerInventory.SelectItem(3);
         }
 
@@ -52,11 +56,13 @@ public class PlayerInput : MonoBehaviour
 
         if(m_AccumlatedScrollWheelDelta > m_ScrollWheelSensitivity)
         {
+            GameManager.Instance.RequestPlayTickSound();
             GameManager.Instance.PlayerInventory.SelectNextItem();
             m_AccumlatedScrollWheelDelta = 0;
         }
         else if (m_AccumlatedScrollWheelDelta < -m_ScrollWheelSensitivity)
         {
+            GameManager.Instance.RequestPlayTickSound();
             GameManager.Instance.PlayerInventory.SelectPreviousItem();
             m_AccumlatedScrollWheelDelta = 0;
         }

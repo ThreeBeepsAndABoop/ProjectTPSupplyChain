@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     public bool PlayBackgroundAmbience = true;
 
     public AudioClip ButtonClickSound;
+    public AudioClip PickUpSound;
+    public AudioClip DropSound;
+    public AudioClip TickSound;
     public AudioClip MachineSound;
     public AudioClip NewBoxSound;
     public AudioClip BackgroundMusic;
@@ -56,6 +59,22 @@ public class GameManager : MonoBehaviour
     public void RequestPlayButtonClickSound()
     {
         loudAudioSource.PlayOneShot(ButtonClickSound);
+    }
+
+
+    public void RequestPlayTickSound()
+    {
+        loudAudioSource.PlayOneShot(TickSound);
+    }
+
+    public void RequestPlayPickUpSound()
+    {
+        loudAudioSource.PlayOneShot(PickUpSound);
+    }
+
+    public void RequestPlayDropSound()
+    {
+        loudAudioSource.PlayOneShot(DropSound);
     }
 
     public void RequestPlayBackgroundMusic()
