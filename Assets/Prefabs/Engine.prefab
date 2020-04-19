@@ -1728,7 +1728,11 @@ MonoBehaviour:
   terminal: {fileID: 782490493537155685}
   statusPole: {fileID: 7401736777461482951}
   components: []
-  componentRequests: []
+  componentRequests:
+  - componentType: 1
+    effect: Inc. Speed
+    minCount: 1
+    maxCount: 2
   bufferedResources: []
   requiredResources:
   - resourceType: 0

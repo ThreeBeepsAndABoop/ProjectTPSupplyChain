@@ -174,8 +174,11 @@ public class MachineController : MonoBehaviour
     {
         terminal.Clear();
         terminal.AppendLine(machineName);
-        terminal.AppendLine("Status: " + machineStatus.ToString());
-
+        terminal.AppendLine("Status: " + machineStatus.statusString());
+        terminal.AppendLine("");
+        PrintInputsAndOutputs();
+        terminal.AppendLine("");
+        PrintComponents();
 
         if (machineStatus == MachineStatus.Good)
         {
@@ -191,6 +194,101 @@ public class MachineController : MonoBehaviour
             statusPole.statusColor = StatusPoleLightColor.Error;
         }
     }
+
+    void PrintInputsAndOutputs()
+    {
+        List<string> inputLines = new List<string>();
+        inputLines.Add("Requires:");
+        foreach (ResourceRequest req in requiredResources)
+        {
+            inputLines.Add("- " + req.amount + " " + req.resourceType.typeString());
+        }
+
+        List<string> outputsLines = new List<string>();
+        outputsLines.Add("Supplies:");
+        foreach (ResourceRequest req in suppliableResources)
+        {
+            outputsLines.Add("- " + req.amount + " " + req.resourceType.typeString());
+        }
+
+        for(int i = 0; i < Math.Max(inputLines.Count, outputsLines.Count); i++)
+        {
+            string input;
+            if (inputLines.Count > i)
+            {
+                input = inputLines[i];
+            }
+            else
+            {
+                input = "";
+            }
+
+            string output;
+            if (outputsLines.Count > i)
+            {
+                output = outputsLines[i];
+            }
+            else
+            {
+                output = "";
+            }
+
+            terminal.AppendLine(input.PadRight(terminal.charsWide / 2, ' ') + output);
+        }
+    }
+
+    void PrintTableLine(string component, string effect, string min, string max, string slot1, string slot2, Char fillter)
+    {
+        var cmp = (fillter + component).PadRight(12, fillter);
+        var eff = (fillter + effect).PadRight(17, fillter);
+        var mi  = (fillter + min).PadRight(5, fillter);
+        var ma  = (fillter + max).PadRight(5, fillter);
+        var s1  = (fillter + slot1).PadRight(7, fillter);
+        var s2  = (fillter + slot2).PadRight(7, fillter);
+        terminal.AppendLine("|" + cmp + "|" + eff + "|" + mi + "|" + ma + "|" + s1 + "|" + s2 + "|");
+    }
+
+    void PrintComponents()
+    {
+        if (componentRequests.Count == 0)
+        {
+            return;
+        }
+
+
+        terminal.AppendLine("Component Health:");
+        terminal.AppendLine("Components degrade over time. Consult your ships maintenance department if components are missing.");
+        terminal.AppendLine(" ");
+        PrintTableLine("Component", "Effect", "Min", "Max", "1", "2", ' ');
+        PrintTableLine("", "", "", "", "", "", '-');
+        foreach (MachineComponentRequest req in componentRequests)
+        {
+            List<string> itemStatuses = new List<string>();
+            foreach (MachineComponent cmp in components)
+            {
+                if (cmp != null && cmp.Type == req.componentType)
+                {
+                    itemStatuses.Add(Math.Round(cmp.Condition * 100).ToString() + "%");
+                }
+            }
+
+            while (itemStatuses.Count < 2)
+            {
+                if (itemStatuses.Count > req.maxCount)
+                {
+                    itemStatuses.Add("N/A");
+                } else if (itemStatuses.Count < req.minCount)
+                {
+                    itemStatuses.Add("REQ.");
+                } else 
+                {
+                    itemStatuses.Add("EMPTY");
+                }
+            }
+
+            PrintTableLine(req.componentType.machineComponentName(), req.effect, req.minCount.ToString(), req.maxCount.ToString(), itemStatuses[0], itemStatuses[1], ' ');
+        }
+    }
 }
 
 public enum MachineStatus
@@ -198,10 +296,40 @@ public enum MachineStatus
     Good, DownstreamFull, LowEfficency, UpstreamEmpty, Broken
 }
 
+public static class MachineStatusExtensions
+{
+    public static string statusString(this MachineStatus machineStatus)
+    {
+        if (machineStatus == MachineStatus.Good)
+        {
+            return "Good";
+        }
+        else if (machineStatus == MachineStatus.DownstreamFull)
+        {
+            return "Resource is at capacity";
+        } else if (machineStatus == MachineStatus.LowEfficency)
+        {
+            return "Low Efficency";
+        }
+        else if (machineStatus == MachineStatus.UpstreamEmpty)
+        {
+            return "Missing Required Resources";
+        }
+        else if (machineStatus == MachineStatus.Broken)
+        {
+            return "Broken";
+        } else
+        {
+            return "Invalid";
+        }
+    }
+}
+
 [System.Serializable]
 public class MachineComponentRequest
 {
     public MachineComponentType componentType;
+    public string effect;
     public int minCount;
     public int maxCount;
 }

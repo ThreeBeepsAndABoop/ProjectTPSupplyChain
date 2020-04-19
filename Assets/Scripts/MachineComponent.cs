@@ -12,6 +12,32 @@ public enum MachineComponentType {
     Compressor,
 }
 
+public static class MachineComponentTypeExtensions
+{
+    public static string machineComponentName(this MachineComponentType machineComponent)
+    {
+        if (machineComponent == MachineComponentType.Battery)
+        {
+            return "Battery";
+        } else if (machineComponent == MachineComponentType.Coolant)
+        {
+            return "Coolant";
+        } else if (machineComponent == MachineComponentType.Motor)
+        {
+            return "Motor";
+        } else if (machineComponent == MachineComponentType.Computer)
+        {
+            return "Computer";
+        } else if (machineComponent == MachineComponentType.Compressor)
+        {
+            return "Compressor";
+        } else
+        {
+            return "Invalid";
+        }
+    }
+}
+
 public class MachineComponent : MonoBehaviour
 {
     [Range(0, 1)]

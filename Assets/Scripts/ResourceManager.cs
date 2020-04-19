@@ -41,6 +41,30 @@ public class ResourceManager : MonoBehaviour
 public enum ResourceType 
 {
     BatteryStorage, LifeSupport, FTLJumpDriveCharge
+
+}
+
+public static class ResourceTypeExtensions
+{
+    public static string typeString(this ResourceType type)
+    {
+        if (type == ResourceType.BatteryStorage)
+        {
+            return "Power";
+        }
+        else if (type == ResourceType.FTLJumpDriveCharge)
+        {
+            return "FTL Jump Drive Charge";
+        }
+        else if (type == ResourceType.LifeSupport)
+        {
+            return "Life Support";
+        }
+        else
+        {
+            return "Invalid";
+        }
+    }
 }
 
 [System.Serializable]
