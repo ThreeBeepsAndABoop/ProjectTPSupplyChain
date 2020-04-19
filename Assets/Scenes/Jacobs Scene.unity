@@ -1074,6 +1074,31 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4094702730583480450, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131503843261770997, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131503843261770997, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131503843261770997, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131503843261770997, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4591944740363172069, guid: 419a9e4e867a347c4a3d1f25509d44a4,
         type: 3}
       propertyPath: m_Mesh
@@ -1255,6 +1280,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7510847070647302912, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142037809148862500, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142037809148862500, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142037809148862500, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142037809148862500, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177154375523325011, guid: 419a9e4e867a347c4a3d1f25509d44a4,
         type: 3}
       propertyPath: m_Mesh
       value: 
