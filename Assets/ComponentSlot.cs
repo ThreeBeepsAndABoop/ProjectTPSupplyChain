@@ -5,6 +5,8 @@ using UnityEngine;
 public class ComponentSlot : MonoBehaviour
 {
     public MachineComponentType AcceptedType;
+
+    [HideInInspector]
     public MachineController Machine;
 
     private Transform _componentTransform;

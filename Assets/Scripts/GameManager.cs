@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     private GameManager() {}
     public static GameManager Instance { get; private set; }
 
+    [HideInInspector]
     public GameObject Player;
 
+    [HideInInspector]
     public PlayerInventory PlayerInventory;
 
     public ResourceManager ResourceManager;
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public AnimationCurve itemsPerBoxCurve = AnimationCurve.EaseInOut(0, 0, 1, 12);
 
+    [HideInInspector]
     public GrabIt GrabIt;
 
     public void RequestPlayButtonClickSound()
