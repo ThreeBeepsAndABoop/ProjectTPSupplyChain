@@ -45,11 +45,13 @@ public class MachineController : MonoBehaviour
 
     public void AddComponent(MachineComponent component)
     {
+        Debug.Log("Add Component " + component);
         components.Add(component);
     }
 
     public void RemoveComponent(MachineComponent component)
     {
+        Debug.Log("Remove Component " + component);
         components.Remove(component);
     }
 

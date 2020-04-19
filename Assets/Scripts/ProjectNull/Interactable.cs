@@ -6,10 +6,11 @@ public enum InteractableType
 {
     Box = 0,
     Button = 1,
-
     Item = 2,
+    ComponentSlot = 3,
 }
 
+// Todo, make subclasses of the script, rather than relying on the enum
 public class Interactable : MonoBehaviour
 {
     public InteractableType type;
@@ -20,6 +21,9 @@ public class Interactable : MonoBehaviour
         {
             case InteractableType.Button:
                 transform.parent.GetComponent<WorldButton>().Press();
+                break;
+            case InteractableType.ComponentSlot:
+                GetComponent<ComponentSlot>().Interact();
                 break;
             default:
                 break;

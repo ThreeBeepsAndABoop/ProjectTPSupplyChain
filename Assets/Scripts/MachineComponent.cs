@@ -17,6 +17,7 @@ public class MachineComponent : MonoBehaviour
     [Range(0, 1)]
     public double Condition = 1;
     public MachineComponentType Type;
+    public ComponentSlot Slot;
 
     public GameObject DebugLabelPrefab;
 
@@ -52,6 +53,7 @@ public class MachineComponent : MonoBehaviour
     }
 
     // measured in condition loss per second
+    // could be coupled with machine types to have different deterioration rates 
     double BaseDeteriorationRate() {
         const Double percentPerSecond = (1.0 / 60.0);
         switch (Type) {

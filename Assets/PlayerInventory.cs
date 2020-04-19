@@ -40,13 +40,7 @@ public class PlayerInventory : MonoBehaviour
         SelectItem((SelectedItemIndex - 1) % InventoryCapacity);
     }
 
-    private const float DEFAULT_GRAB_DISTANCE = 1;
     public bool SelectItem(int index)
-    {
-        return SelectItem(index, DEFAULT_GRAB_DISTANCE);
-    }
-
-    private bool SelectItem(int index, float distance)
     {
         Debug.Log("Select inventory at index " + index);
         if (index < 0 || index >= InventoryCount)
@@ -139,7 +133,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public bool PickUp(Grabbable grabbable, float distance)
+    public bool PickUp(Grabbable grabbable)
     {
         int firstFreeIndex = -1;
         for (int i = 0; i < _inventory.Length; i++)
@@ -178,8 +172,7 @@ public class PlayerInventory : MonoBehaviour
         grabbable.transform.localPosition = Vector3.zero;
         grabbable.transform.localRotation = Quaternion.identity;
 
-        SelectItem(firstFreeIndex, distance);
-
+        SelectItem(firstFreeIndex);
 
         _inventorySlots[firstFreeIndex].enabled = true;
         _inventorySlots[firstFreeIndex].sprite = grabbable.icon;
@@ -200,6 +193,10 @@ public class PlayerInventory : MonoBehaviour
         }
         if (index >= 0)
         {
+            if(index == SelectedItemIndex)
+            {
+                _quitPanelGO.SetActive(false);
+            }
             Debug.Log("Inventory remove " + grabbable + " at index " + index);
             _inventory[index] = null;
             grabbable.InPlayerInventory = false;

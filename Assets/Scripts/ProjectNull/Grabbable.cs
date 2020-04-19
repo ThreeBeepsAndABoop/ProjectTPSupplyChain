@@ -14,7 +14,7 @@ public class Grabbable : Interactable
         //GameManager.Instance.GrabIt.Grab(hitInfo.distance, this);
         if(!InPlayerInventory)
         {
-            GameManager.Instance.PlayerInventory.PickUp(this, hitInfo.distance);
+            GameManager.Instance.PlayerInventory.PickUp(this);
         }
     }
 

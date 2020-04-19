@@ -52,7 +52,7 @@ public class PlayerInput : MonoBehaviour
                 Interactable interactable = hitInfo.collider.gameObject.GetComponent<Interactable>();
                 if (interactable != null)
                 {
-                    Debug.Log("Interact");
+                    Debug.Log("Interact with " + hitInfo.rigidbody.gameObject);
                     interactable.Interact(hitInfo);
                 }
             }
