@@ -43,8 +43,52 @@ public class MachineController : MonoBehaviour
         }
     }
 
+    public void AddComponent(MachineComponent component)
+    {
+        components.Add(component);
+    }
+
+    public void RemoveComponent(MachineComponent component)
+    {
+        components.Remove(component);
+    }
+
     MachineStatus UpdateResourceRequests()
     {
+
+        // Create a summary of what we have
+        Dictionary<MachineComponentType, MachineComponentSummaryRequest> componentCounts = new Dictionary<MachineComponentType, MachineComponentSummaryRequest>();
+        foreach (MachineComponent component in components)
+        {
+            if (componentCounts.ContainsKey(component.Type))
+            {
+                componentCounts[component.Type].count += 1;
+            } else
+            {
+                componentCounts[component.Type] = new MachineComponentSummaryRequest(component.Type, 0, 1, 0);
+            }
+        }
+
+        // Create a summary of what the min/max is
+        foreach (MachineComponentRequest component in componentRequests)
+        {
+            if (componentCounts.ContainsKey(component.componentType))
+            {
+                componentCounts[component.componentType].minCount += component.minCount;
+                componentCounts[component.componentType].maxCount += component.maxCount;
+            }
+            else
+            {
+                componentCounts[component.componentType] = new MachineComponentSummaryRequest(component.componentType, component.minCount, 0, component.maxCount);
+            }
+        }
+
+        return UpdateResourceRequestsFromCounts(componentCounts);
+    }
+
+    public MachineStatus UpdateResourceRequestsFromCounts(Dictionary<MachineComponentType, MachineComponentSummaryRequest> componentCounts)
+    {
+
         // Go through the components and determine efficency...
         // Will need to be done for each client.
         return MachineStatus.Good;
@@ -152,6 +196,23 @@ public class MachineComponentRequest
     public MachineComponentType componentType;
     public int minCount;
     public int maxCount;
+}
+
+[System.Serializable]
+public class MachineComponentSummaryRequest
+{
+    public MachineComponentType componentType;
+    public int minCount;
+    public int count;
+    public int maxCount;
+
+    public MachineComponentSummaryRequest(MachineComponentType componentType, int minCount, int count, int maxCount)
+    {
+        this.componentType = componentType;
+        this.minCount = minCount;
+        this.count = count;
+        this.maxCount = maxCount;
+    }
 }
 
 [System.Serializable]
