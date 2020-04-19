@@ -4996,6 +4996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   PlayerInventory: {fileID: 0}
+  ResourceManager: {fileID: 0}
   Debug: 1
   PlayBackgroundMusic: 0
   PlayBackgroundAmbience: 1
@@ -5529,6 +5530,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6359660342708226359, guid: 4803a22f1e6c3475cb9e01579b20c675,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.37743163
+      objectReference: {fileID: 0}
+    - target: {fileID: 6359660342708226359, guid: 4803a22f1e6c3475cb9e01579b20c675,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: 6359660342708226359, guid: 4803a22f1e6c3475cb9e01579b20c675,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.466
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4803a22f1e6c3475cb9e01579b20c675, type: 3}
