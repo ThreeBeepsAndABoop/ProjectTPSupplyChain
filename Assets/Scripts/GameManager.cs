@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
 
     public ResourceManager ResourceManager;
 
+    public GameObject BatteryPrefab;
+    public GameObject CoolantPrefab;
+    public GameObject MotorPrefab;
+    public GameObject ComputerPrefab;
+    public GameObject CompressorPrefab;
+
     public bool Debug = true;
     public bool PlayBackgroundMusic = true;
     public bool PlayBackgroundAmbience = true;

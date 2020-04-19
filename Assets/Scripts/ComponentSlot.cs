@@ -5,6 +5,7 @@ using UnityEngine;
 public class ComponentSlot : MonoBehaviour
 {
     public MachineComponentType AcceptedType;
+    public bool StartFilled;
 
     [HideInInspector]
     public MachineController Machine;
@@ -17,6 +18,37 @@ public class ComponentSlot : MonoBehaviour
     {
         Machine = GetComponentInParent<MachineController>();
         _componentTransform = transform.Find("ComponentLocation").transform;
+
+        if(StartFilled)
+        {
+            GameObject prefab = null;
+            switch (AcceptedType)
+            {
+                case MachineComponentType.Battery:
+                    prefab = GameManager.Instance.BatteryPrefab;
+                    break;
+                case MachineComponentType.Compressor:
+                    prefab = GameManager.Instance.CompressorPrefab;
+                    break;
+                case MachineComponentType.Computer:
+                    prefab = GameManager.Instance.ComputerPrefab;
+                    break;
+                case MachineComponentType.Motor:
+                    prefab = GameManager.Instance.MotorPrefab;
+                    break;
+                case MachineComponentType.Coolant:
+                    prefab = GameManager.Instance.CoolantPrefab;
+                    break;
+                default:
+                    break;
+            }
+
+            if (prefab != null)
+            {
+                GameObject go = Instantiate(prefab);
+                AcceptComponent(go.GetComponent<MachineComponent>());
+            }
+        }
     }
 
     // Update is called once per frame
@@ -45,24 +77,29 @@ public class ComponentSlot : MonoBehaviour
             MachineComponent machineComponent = grabbedItem.GetComponent<MachineComponent>();
             if (machineComponent && machineComponent.Type == AcceptedType)
             {
-                _heldComponent = machineComponent;
                 GameManager.Instance.PlayerInventory.Drop(grabbedItem);
 
-                var rbs = grabbedItem.GetComponentsInChildren<Rigidbody>();
-                foreach (var rb in rbs)
-                {
-                    rb.isKinematic = true;
-                    rb.detectCollisions = false;
-                }
-
-                grabbedItem.transform.parent = _componentTransform;
-                grabbedItem.transform.localPosition = Vector3.zero;
-                grabbedItem.transform.localRotation = Quaternion.identity;
-
-                _heldComponent.Slot = this;
-                Machine.AddComponent(_heldComponent);
+                AcceptComponent(machineComponent);
             }
         }
+    }
+
+    private void AcceptComponent(MachineComponent machineComponent)
+    {
+        _heldComponent = machineComponent;
+        var rbs = machineComponent.GetComponentsInChildren<Rigidbody>();
+        foreach (var rb in rbs)
+        {
+            rb.isKinematic = true;
+            rb.detectCollisions = false;
+        }
+
+        machineComponent.transform.parent = _componentTransform;
+        machineComponent.transform.localPosition = Vector3.zero;
+        machineComponent.transform.localRotation = Quaternion.identity;
+
+        _heldComponent.Slot = this;
+        Machine.AddComponent(_heldComponent);
     }
 
     public void ReleaseComponent()
