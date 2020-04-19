@@ -360,15 +360,15 @@ public static class MachineStatusExtensions
             return "<color=#FF4500>Resource is at capacity</color>";
         } else if (machineStatus == MachineStatus.LowEfficency)
         {
-            return "<color=#FF4500>Low Efficency</color>";
+            return "<color=#FF4500>Low Efficency - add more components or existing components will degrade faster</color>";
         }
         else if (machineStatus == MachineStatus.UpstreamEmpty)
         {
-            return "<color=#FF0000>Missing Required Resources</color>";
+            return "<color=#FF0000>Missing required resources</color>";
         }
         else if (machineStatus == MachineStatus.Broken)
         {
-            return "<color=#FF0000>Broken</color>";
+            return "<color=#FF0000>Broken - missing required components</color>";
         } else
         {
             return "<color=#FF0000>Invalid</color>";
