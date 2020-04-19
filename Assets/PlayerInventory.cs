@@ -13,6 +13,7 @@ public class PlayerInventory : MonoBehaviour
     private GameObject _inventorySlotsGO;
     private Image[] _inventorySlots;
     private RectTransform _inventoryHighlight;
+    private GameObject _quitPanelGO;
     private int[] _cachedLayers;
 
     public int SelectedItemIndex;
@@ -67,8 +68,12 @@ public class PlayerInventory : MonoBehaviour
 
         if (!newlySelectedItem)
         {
+            _quitPanelGO.SetActive(false);
             return true;
         }
+
+        _quitPanelGO.GetComponent<RectTransform>().anchoredPosition = new Vector3(15 + 90 * index, 30, 0);// fucking amazing.
+        _quitPanelGO.SetActive(true);
 
         return true;
     }
@@ -231,6 +236,8 @@ public class PlayerInventory : MonoBehaviour
         _inventorySlotsGO = GameObject.Find("InventorySlots");
 
         _inventoryHighlight = _inventorySlotsGO.transform.Find("HIGHLIGHT").GetComponent<RectTransform>();
+        _quitPanelGO = _inventorySlotsGO.transform.Find("QUIT_PANEL").gameObject;
+        _quitPanelGO.SetActive(false);
 
         _inventorySlots = new Image[InventoryCapacity];
         for (int i = 0; i < _inventorySlotsGO.transform.childCount; i++)
