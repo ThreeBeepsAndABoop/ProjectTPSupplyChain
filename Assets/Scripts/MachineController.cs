@@ -38,7 +38,10 @@ public class MachineController : MonoBehaviour
             second -= requiredTime;
 
             machineStatus = UpdateResourceRequests();
-            machineStatus = AttemptToGetAndSendResources();
+            if (machineStatus != MachineStatus.Broken) {
+                machineStatus = AttemptToGetAndSendResources();
+            }
+
             UpdateTerminalAndLight();
         }
     }
@@ -67,10 +70,11 @@ public class MachineController : MonoBehaviour
 
             if (componentCounts.ContainsKey(component.Type))
             {
-                componentCounts[component.Type].count += 1;
+                componentCounts[component.Type].components.Add(component);
             } else
             {
-                componentCounts[component.Type] = new MachineComponentSummaryRequest(component.Type, 0, 1, 0);
+                componentCounts[component.Type] = new MachineComponentSummaryRequest(component.Type, 0, new List<MachineComponent>(), 0);
+                componentCounts[component.Type].components.Add(component);
             }
         }
 
@@ -84,14 +88,14 @@ public class MachineController : MonoBehaviour
             }
             else
             {
-                componentCounts[component.componentType] = new MachineComponentSummaryRequest(component.componentType, component.minCount, 0, component.maxCount);
+                componentCounts[component.componentType] = new MachineComponentSummaryRequest(component.componentType, component.minCount, new List<MachineComponent>(), component.maxCount);
             }
         }
 
         return UpdateResourceRequestsFromCounts(componentCounts);
     }
 
-    public MachineStatus UpdateResourceRequestsFromCounts(Dictionary<MachineComponentType, MachineComponentSummaryRequest> componentCounts)
+    virtual public MachineStatus UpdateResourceRequestsFromCounts(Dictionary<MachineComponentType, MachineComponentSummaryRequest> componentCounts)
     {
 
         // Go through the components and determine efficency...
@@ -320,10 +324,12 @@ public class MachineController : MonoBehaviour
                 if (itemStatuses.Count > req.maxCount)
                 {
                     itemStatuses.Add("N/A");
-                } else if (itemStatuses.Count < req.minCount)
+                }
+                else if (itemStatuses.Count < req.minCount)
                 {
                     itemStatuses.Add("REQ.");
-                } else 
+                }
+                else
                 {
                     itemStatuses.Add("EMPTY");
                 }
@@ -384,15 +390,20 @@ public class MachineComponentSummaryRequest
 {
     public MachineComponentType componentType;
     public int minCount;
-    public int count;
+    public List<MachineComponent> components;
     public int maxCount;
 
-    public MachineComponentSummaryRequest(MachineComponentType componentType, int minCount, int count, int maxCount)
+    public MachineComponentSummaryRequest(MachineComponentType componentType, int minCount, List<MachineComponent> components, int maxCount)
     {
         this.componentType = componentType;
         this.minCount = minCount;
-        this.count = count;
+        this.components = components;
         this.maxCount = maxCount;
+    }
+
+    public double Percent()
+    {
+        return (double)components.Count / (double)maxCount;
     }
 }
 
