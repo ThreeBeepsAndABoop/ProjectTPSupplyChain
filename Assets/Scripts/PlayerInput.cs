@@ -48,7 +48,8 @@ public class PlayerInput : MonoBehaviour
             GameManager.Instance.PlayerInventory.SelectItem(3);
         }
 
-        float scrollDelta = Input.mouseScrollDelta.magnitude;
+        float scrollDelta = Input.mouseScrollDelta.y;
+        if (scrollDelta == 0) { scrollDelta = Input.mouseScrollDelta.x; }
         if (scrollDelta == 0)
         {
             m_AccumlatedScrollWheelDelta = 0;
