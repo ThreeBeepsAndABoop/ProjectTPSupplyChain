@@ -36,7 +36,10 @@ public class StatusPole : MonoBehaviour
         amberLight.GetComponent<Renderer>().material = amberOff;
         redLight.GetComponent<Renderer>().material   = redOff;
 
-        if (statusColor != StatusPoleLightColor.Green)
+        if (statusColor == StatusPoleLightColor.Good || statusColor == StatusPoleLightColor.Idle)
+        {
+            light.intensity = intensity;
+        }  else
         {
             blinkTime += Time.deltaTime / blinkSpeed;
             if (blinkTime > 1)
@@ -44,24 +47,28 @@ public class StatusPole : MonoBehaviour
                 blinkTime -= 1;
             }
             light.intensity = blinkCurve.Evaluate(blinkTime) * intensity;
-        } else
-        {
-            light.intensity = intensity;
         }
 
         if (light.intensity > 0.5) {
-            if (statusColor == StatusPoleLightColor.Green)
+            if (statusColor == StatusPoleLightColor.Good)
             {
                 greenLight.GetComponent<Renderer>().material = greenOn;
                 light.color = new Color(0f, 1f, 0f);
-            } else if (statusColor == StatusPoleLightColor.Amber)
+            } else if (statusColor == StatusPoleLightColor.Warn)
             {
                 amberLight.GetComponent<Renderer>().material = amberOn;
                 light.color = new Color(1f, 1f, 0f);
-            } else if (statusColor == StatusPoleLightColor.Red)
+            }
+            else if (statusColor == StatusPoleLightColor.Error)
             {
                 redLight.GetComponent<Renderer>().material = redOn;
                 light.color = new Color(1f, 0f, 0f);
+            }
+            else if (statusColor == StatusPoleLightColor.Idle)
+            {
+                greenLight.GetComponent<Renderer>().material = greenOn;
+                amberLight.GetComponent<Renderer>().material = amberOn;
+                light.color = new Color(0.75f, 1f, 0f);
             }
         }
     }
@@ -69,7 +76,8 @@ public class StatusPole : MonoBehaviour
 
 public enum StatusPoleLightColor
 {
-    Green,
-    Amber,
-    Red
+    Good,
+    Warn,
+    Error,
+    Idle
 }

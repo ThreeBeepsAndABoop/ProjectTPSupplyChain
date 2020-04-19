@@ -24,13 +24,13 @@ public class MachineController : MonoBehaviour
     public float requiredTime;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
        
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         second += Time.deltaTime;
         if (second > requiredTime)
@@ -60,6 +60,9 @@ public class MachineController : MonoBehaviour
         Dictionary<MachineComponentType, MachineComponentSummaryRequest> componentCounts = new Dictionary<MachineComponentType, MachineComponentSummaryRequest>();
         foreach (MachineComponent component in components)
         {
+            if (component == null) { continue; }
+
+
             if (componentCounts.ContainsKey(component.Type))
             {
                 componentCounts[component.Type].count += 1;
@@ -174,13 +177,16 @@ public class MachineController : MonoBehaviour
 
         if (machineStatus == MachineStatus.Good)
         {
-            statusPole.statusColor = StatusPoleLightColor.Green;
-        } else if (machineStatus == MachineStatus.LowEfficency || machineStatus == MachineStatus.DownstreamFull)
+            statusPole.statusColor = StatusPoleLightColor.Good;
+        } else if (machineStatus == MachineStatus.LowEfficency)
         {
-            statusPole.statusColor = StatusPoleLightColor.Amber;
+            statusPole.statusColor = StatusPoleLightColor.Warn;
+        } else  if (machineStatus == MachineStatus.DownstreamFull)
+        {
+            statusPole.statusColor = StatusPoleLightColor.Idle;
         } else
         {
-            statusPole.statusColor = StatusPoleLightColor.Red;
+            statusPole.statusColor = StatusPoleLightColor.Error;
         }
     }
 }
