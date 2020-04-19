@@ -48,6 +48,11 @@ public class GameManager : MonoBehaviour
 
     private TextMeshProUGUI _timeLeftLabel;
 
+    public float GameCompletionPercentage()
+    {
+        return (totalGameTime - timeleft) / totalGameTime;
+    }
+
     public void RequestPlayButtonClickSound()
     {
         loudAudioSource.PlayOneShot(ButtonClickSound);
