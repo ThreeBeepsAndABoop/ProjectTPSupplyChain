@@ -1037,6 +1037,103 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_text
+      value: 'Engine Status
+
+        Charging: 43KW per minute. (43% Efficiency)
+
+        Jump
+        Battery at 53% (5.3MW of 10MW)
+
+        [=======================                                    
+        ]
+
+
+
+        Component Health:
+
+        Components degrade over time and
+        may require replacement. Consult your ship''s mechanic if a component is
+        missing.
+
+
+        | Component   | Effect                 | Slot 1   | Slot
+        2   |
+
+        |-------------|------------------------|----------|----------|
+
+        |
+        Battery*    | Store More Engery      | 50%      | Missing! |
+
+        | Coolent    
+        | Increases Charge Rate  | 50%      | 42%      |
+
+
+        * Required for
+        JUMP'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_colorMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_fontColorGradient.bottomLeft.r
+      value: 0.5566038
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_fontColorGradient.bottomLeft.g
+      value: 0.5566038
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_fontColorGradient.bottomLeft.b
+      value: 0.5566038
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.r
+      value: 0.5566038
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.g
+      value: 0.5566038
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.b
+      value: 0.5566038
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 564
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 163
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527624606212165456, guid: 419a9e4e867a347c4a3d1f25509d44a4,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 3079723439003402640, guid: 419a9e4e867a347c4a3d1f25509d44a4,
         type: 3}
       propertyPath: m_Mesh

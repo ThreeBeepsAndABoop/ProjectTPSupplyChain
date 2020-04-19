@@ -239,13 +239,33 @@ public class MachineController : MonoBehaviour
 
     void PrintTableLine(string component, string effect, string min, string max, string slot1, string slot2, Char fillter)
     {
+        PrintTableLine(component, effect, min, max, slot1, slot2, null, null, null, null, null, null, fillter);
+    }
+
+    void PrintTableLine(string component, string effect, string min, string max, string slot1, string slot2,
+        string componentColor, string effectColor, string minColor, string maxColor, string slot1Color, string slot2Color,
+        Char fillter)
+    {
         var cmp = (fillter + component).PadRight(12, fillter);
         var eff = (fillter + effect).PadRight(17, fillter);
-        var mi  = (fillter + min).PadRight(5, fillter);
-        var ma  = (fillter + max).PadRight(5, fillter);
-        var s1  = (fillter + slot1).PadRight(7, fillter);
-        var s2  = (fillter + slot2).PadRight(7, fillter);
+        var mi = (fillter + min).PadRight(5, fillter);
+        var ma = (fillter + max).PadRight(5, fillter);
+        var s1 = (fillter + slot1).PadRight(7, fillter);
+        var s2 = (fillter + slot2).PadRight(7, fillter);
+
+        ColorizeString(ref cmp, componentColor);
+        ColorizeString(ref eff, effectColor);
+        ColorizeString(ref mi, minColor);
+        ColorizeString(ref ma, maxColor);
+        ColorizeString(ref s1, slot1Color);
+        ColorizeString(ref s2, slot2Color);
+
         terminal.AppendLine("|" + cmp + "|" + eff + "|" + mi + "|" + ma + "|" + s1 + "|" + s2 + "|");
+    }
+
+    void ColorizeString(ref string str, string color)
+    {
+        if (color != null) { str = "<color=" + color + ">" + str + "</color>"; }
     }
 
     void PrintComponents()
@@ -286,7 +306,17 @@ public class MachineController : MonoBehaviour
                 }
             }
 
-            PrintTableLine(req.componentType.machineComponentName(), req.effect, req.minCount.ToString(), req.maxCount.ToString(), itemStatuses[0], itemStatuses[1], ' ');
+            const string alertColor = "#FF0000";
+
+            string colorItemStatus1 = null;
+            if (itemStatuses[0] == "REQ." || itemStatuses[0] == "0%") { colorItemStatus1 = alertColor; }
+
+            string colorItemStatus2 = null;
+            if (itemStatuses[1] == "REQ." || itemStatuses[1] == "0%") { colorItemStatus2 = alertColor; }
+
+            PrintTableLine(req.componentType.machineComponentName(), req.effect, req.minCount.ToString(), req.maxCount.ToString(), itemStatuses[0], itemStatuses[1],
+                null, null, null, null, colorItemStatus1, colorItemStatus2,
+                ' ');
         }
     }
 }
@@ -306,21 +336,21 @@ public static class MachineStatusExtensions
         }
         else if (machineStatus == MachineStatus.DownstreamFull)
         {
-            return "Resource is at capacity";
+            return "<color=#FF4500>Resource is at capacity</color>";
         } else if (machineStatus == MachineStatus.LowEfficency)
         {
-            return "Low Efficency";
+            return "<color=#FF4500>Low Efficency</color>";
         }
         else if (machineStatus == MachineStatus.UpstreamEmpty)
         {
-            return "Missing Required Resources";
+            return "<color=#FF0000>Missing Required Resources</color>";
         }
         else if (machineStatus == MachineStatus.Broken)
         {
-            return "Broken";
+            return "<color=#FF0000>Broken</color>";
         } else
         {
-            return "Invalid";
+            return "<color=#FF0000>Invalid</color>";
         }
     }
 }
