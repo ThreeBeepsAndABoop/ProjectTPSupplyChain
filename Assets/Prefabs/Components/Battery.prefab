@@ -221,6 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Condition: 1
   Type: 0
+  Slot: {fileID: 0}
   DebugLabelPrefab: {fileID: 3654153380686865677, guid: 70ebd413bb89d4faaaa7199c88de3873,
     type: 3}
 --- !u!114 &3487787183419048809
@@ -239,6 +240,7 @@ MonoBehaviour:
   Grabbed: 0
   InPlayerInventory: 0
   icon: {fileID: 21300000, guid: 5c45cf76241c34519abcc5bbff896de6, type: 3}
+  name: Battery
 --- !u!136 &3487787183419048823
 CapsuleCollider:
   m_ObjectHideFlags: 0

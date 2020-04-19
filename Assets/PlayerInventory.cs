@@ -14,10 +14,10 @@ public class PlayerInventory : MonoBehaviour
     private Image[] _inventorySlots;
     private RectTransform _inventoryHighlight;
     private GameObject _quitPanelGO;
+    private Text _selectedItemText;
     private int[] _cachedLayers;
-    private int _count;
 
-    public int Count { get { return _count; } }
+    public int Count { get; private set; }
 
     public int SelectedItemIndex;
     public int InventoryCapacity = 4;
@@ -79,6 +79,7 @@ public class PlayerInventory : MonoBehaviour
             return true;
         }
 
+        _selectedItemText.text = newlySelectedItem.name;
         _quitPanelGO.GetComponent<RectTransform>().anchoredPosition = new Vector3(15 + 90 * index, 30, 0);// fucking amazing.
         _quitPanelGO.SetActive(true);
 
@@ -119,6 +120,8 @@ public class PlayerInventory : MonoBehaviour
         {
             return false;
         }
+
+        _selectedItemText.text = "";
 
         // Loop forward to find next item to select
         int newSelectedItemIndex = 0;
@@ -190,7 +193,7 @@ public class PlayerInventory : MonoBehaviour
         _inventorySlots[firstFreeIndex].enabled = true;
         _inventorySlots[firstFreeIndex].sprite = grabbable.icon;
 
-        _count += 1;
+        Count += 1;
         return true;
     }
 
@@ -230,7 +233,7 @@ public class PlayerInventory : MonoBehaviour
             _inventorySlots[index].enabled = false;
             _inventorySlots[index].sprite = null;
 
-            _count -= 1;
+            Count -= 1;
             return true;
         }
         else
@@ -250,6 +253,7 @@ public class PlayerInventory : MonoBehaviour
         _inventoryHighlight = _inventorySlotsGO.transform.Find("HIGHLIGHT").GetComponent<RectTransform>();
         _quitPanelGO = _inventorySlotsGO.transform.Find("QUIT_PANEL").gameObject;
         _quitPanelGO.SetActive(false);
+        _selectedItemText = _inventorySlotsGO.transform.Find("SELECTED_ITEM_WINDOW").GetComponentInChildren<Text>();
 
         _inventorySlots = new Image[InventoryCapacity];
         for (int i = 0; i < _inventorySlotsGO.transform.childCount; i++)

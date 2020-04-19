@@ -47,7 +47,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   PlayerInventory: {fileID: 0}
   ResourceManager: {fileID: 3866545021136074962}
-  Debug: 1
+  Debug: 0
   PlayBackgroundMusic: 0
   PlayBackgroundAmbience: 1
   ButtonClickSound: {fileID: 0}

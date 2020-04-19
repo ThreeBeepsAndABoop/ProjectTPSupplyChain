@@ -84,6 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Condition: 1
   Type: 1
+  Slot: {fileID: 0}
   DebugLabelPrefab: {fileID: 3654153380686865677, guid: 70ebd413bb89d4faaaa7199c88de3873,
     type: 3}
 --- !u!114 &6359660342696986855
@@ -102,6 +103,7 @@ MonoBehaviour:
   Grabbed: 0
   InPlayerInventory: 0
   icon: {fileID: 21300000, guid: b14bfba4c5007403fbb2d6ec2394c713, type: 3}
+  name: Coolant
 --- !u!54 &6359660342696986853
 Rigidbody:
   m_ObjectHideFlags: 0

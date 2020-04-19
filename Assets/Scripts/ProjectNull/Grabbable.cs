@@ -8,6 +8,7 @@ public class Grabbable : Interactable
     public bool InPlayerInventory;
 
     public Sprite icon;
+    public string name;
 
     public override void Interact(RaycastHit hitInfo)
     {
