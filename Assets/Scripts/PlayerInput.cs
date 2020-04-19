@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerInput : MonoBehaviour
 {
     private Camera m_Camera;
+    private TextMeshProUGUI m_crosshairText;
 
     // Start is called before the first frame update
     void Start()
     {
         m_Camera = Camera.main;
+        m_crosshairText = GameObject.Find("CROSSHAIR_TEXT").GetComponent<TextMeshProUGUI>();
     }
 
     LayerMask raycastMask = ~(1 << 2);
@@ -56,6 +59,17 @@ public class PlayerInput : MonoBehaviour
         {
             GameManager.Instance.PlayerInventory.SelectPreviousItem();
             m_AccumlatedScrollWheelDelta = 0;
+        }
+
+        RaycastHit hoverTextHitInfo;
+        m_crosshairText.text = "";
+        if (Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hoverTextHitInfo, range, raycastMask))
+        {
+            Grabbable grabbable = hoverTextHitInfo.collider.gameObject.GetComponent<Grabbable>();
+            if (grabbable != null)
+            {
+                m_crosshairText.text = grabbable.name;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
