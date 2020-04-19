@@ -156,7 +156,7 @@ public class MachineController : MonoBehaviour
         foreach (ResourceRequest sup in suppliableResources)
         {
             Resource res = GameManager.Instance.ResourceManager.ResourceForType(sup.resourceType);
-            if (res.currentAmount + sup.amount > res.maxAmount)
+            if (res.currentAmount >= res.maxAmount)
             {
                 return MachineStatus.DownstreamFull;
             }

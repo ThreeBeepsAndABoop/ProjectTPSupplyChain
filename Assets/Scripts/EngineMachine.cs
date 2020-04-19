@@ -62,26 +62,27 @@ public class EngineMachine : MachineController
             {
                 if (lowEffMode)
                 {
-                    cmp.Condition -= 0.01;
+                    cmp.Condition -= 0.02;
                 } else
                 {
-                    cmp.Condition -= 0.001;
+                    cmp.Condition -= 0.002;
                 }
             }
         }
 
-
+        // We won't get here if the required components are missing.
         // Determine what we need
         var speed = 0.5 + (componentCounts[MachineComponentType.Coolant].Percent() / 2);
         var charge = componentCounts[MachineComponentType.Battery].Percent();
 
+
+        // The engine requires between 10k and 20k Battery --  Depends on # of Batteries
         requiredResources.Clear();
-        requiredResources.Add(new ResourceRequest(ResourceType.BatteryStorage, (int)Math.Round(charge * 1000)));
+        requiredResources.Add(new ResourceRequest(ResourceType.BatteryStorage, (int)Math.Round(charge * 20000)));
 
+        // Produces between 3k and 5k FTL Jump Charge -- Depends on coolant and batteries.
         suppliableResources.Clear();
-        suppliableResources.Add(new ResourceRequest(ResourceType.FTLJumpDriveCharge, (int)Math.Round(charge * speed * 200)));
-
-
+        suppliableResources.Add(new ResourceRequest(ResourceType.FTLJumpDriveCharge, (int)Math.Round(charge * speed * 2000) + 3000));
 
         // Go through the components and determine efficency...
         // Will need to be done for each client.

@@ -54,14 +54,17 @@ public class GeneratorMachine : MachineController
 
 
         // Determine what we need
-        //var speed = 0.5 + (componentCounts[MachineComponentType.Coolant].Percent() / 2);
-        //var charge = componentCounts[MachineComponentType.Battery].Percent();
+        var coolent     = componentCounts[MachineComponentType.Coolant].Percent();
+        var motors      = componentCounts[MachineComponentType.Motor].Percent();
+        var compressor  = componentCounts[MachineComponentType.Compressor].Percent();
+        var eff = (coolent * 4000) + (motors * 4000) + (compressor * 1000) + 1000;
 
-        //requiredResources.Clear();
-        //requiredResources.Add(new ResourceRequest(ResourceType.BatteryStorage, (int)Math.Round(charge * 1000)));
+        // Generators Use Nothing.
+        requiredResources.Clear();
 
-        //suppliableResources.Clear();
-        //suppliableResources.Add(new ResourceRequest(ResourceType.FTLJumpDriveCharge, (int)Math.Round(charge * speed * 200)));
+        // Gernators produce 5k-10k Depending on coolent (1+), motors (1+), and compressor (0 - 2)
+        suppliableResources.Clear();
+        suppliableResources.Add(new ResourceRequest(ResourceType.BatteryStorage, (int)Math.Round(eff)));
 
 
 

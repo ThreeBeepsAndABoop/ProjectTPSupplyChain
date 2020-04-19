@@ -54,14 +54,17 @@ public class LifeSupportMachine : MachineController
 
 
         // Determine what we need
-        //var speed = 0.5 + (componentCounts[MachineComponentType.Coolant].Percent() / 2);
-        //var charge = componentCounts[MachineComponentType.Battery].Percent();
+        var batt = (componentCounts[MachineComponentType.Battery].Percent() - 0.5) *2;
+        var comp = (componentCounts[MachineComponentType.Compressor].Percent() - 0.5) * 2;
+        var eff = 1900 * (1 - (batt * 0.8) - (comp * 0.2)) + 100;
 
-        //requiredResources.Clear();
-        //requiredResources.Add(new ResourceRequest(ResourceType.BatteryStorage, (int)Math.Round(charge * 1000)));
+        // Depending on Batteries (1-2) and Compressors (1-2) uses more or less power. 100 full eff, 2000 lowest eff.
+        requiredResources.Clear();
+        requiredResources.Add(new ResourceRequest(ResourceType.BatteryStorage, (int)Math.Round(eff)));
 
-        //suppliableResources.Clear();
-        //suppliableResources.Add(new ResourceRequest(ResourceType.FTLJumpDriveCharge, (int)Math.Round(charge * speed * 200)));
+        // Life Support always generates 1K of support per second (ALOT)
+        suppliableResources.Clear();
+        suppliableResources.Add(new ResourceRequest(ResourceType.LifeSupport, 1000));
 
 
 
