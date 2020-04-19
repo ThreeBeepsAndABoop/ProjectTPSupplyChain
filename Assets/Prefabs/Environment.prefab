@@ -231,9 +231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartScale: 15
-  EndScale: 300
-  StartIntensity: 1.5
-  EndIntensity: 4
+  EndScale: 350
+  StartIntensity: 0.5
+  EndIntensity: 2
   StartColor: {r: 0.972549, g: 0.69411767, b: 0.67058825, a: 1}
   EndColor: {r: 0.972549, g: 0.8509804, b: 0.8039216, a: 1}
   Debug: 0
