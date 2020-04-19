@@ -3254,10 +3254,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27cd549b40890a64f981cbaea1ad544a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machineName: Example Machine
   terminal: {fileID: 565959805}
   statusPole: {fileID: 421757060}
-  currentAmount: 50
-  totalAmount: 100
+  components: []
+  componentRequests:
+  - componentType: 0
+    minCount: 0
+    maxCount: 2
+  - componentType: 1
+    minCount: 2
+    maxCount: 2
+  - componentType: 2
+    minCount: 1
+    maxCount: 2
+  - componentType: 3
+    minCount: 1
+    maxCount: 1
+  bufferedResources: []
+  requiredResources:
+  - resourceType: 0
+    amount: 100
+  suppliableResources:
+  - resourceType: 1
+    amount: 100
+  machineStatus: 0
+  requiredTime: 1
 --- !u!65 &1192543264
 BoxCollider:
   m_ObjectHideFlags: 0
