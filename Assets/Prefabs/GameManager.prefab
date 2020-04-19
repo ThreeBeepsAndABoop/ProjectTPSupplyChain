@@ -61,6 +61,9 @@ MonoBehaviour:
   PlayBackgroundMusic: 0
   PlayBackgroundAmbience: 1
   ButtonClickSound: {fileID: 0}
+  PickUpSound: {fileID: 8300000, guid: 88da4f2c6584f42088130931242a162a, type: 3}
+  DropSound: {fileID: 8300000, guid: 933a43c507d9f4a599981f82514a27b1, type: 3}
+  TickSound: {fileID: 8300000, guid: 99213f2df2fba49a4a73c4aaca245632, type: 3}
   MachineSound: {fileID: 0}
   NewBoxSound: {fileID: 0}
   BackgroundMusic: {fileID: 0}

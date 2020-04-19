@@ -913,51 +913,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3866545021136074960, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: BatteryPrefab
-      value: 
-      objectReference: {fileID: 3487787183419048820, guid: c774ef77ed719450f813d46192a6dfe8,
-        type: 3}
-    - target: {fileID: 3866545021136074960, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: CompressorPrefab
-      value: 
-      objectReference: {fileID: 1479513425223442084, guid: 23fd2f91c4f4d704898b0acf664461cb,
-        type: 3}
-    - target: {fileID: 3866545021136074960, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: ComputerPrefab
-      value: 
-      objectReference: {fileID: 4455139245368191040, guid: 0641ac979722c9940959bb0e0aff86de,
-        type: 3}
-    - target: {fileID: 3866545021136074960, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: CoolantPrefab
-      value: 
-      objectReference: {fileID: 6359660342696986858, guid: 4803a22f1e6c3475cb9e01579b20c675,
-        type: 3}
-    - target: {fileID: 3866545021136074960, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: MotorPrefab
-      value: 
-      objectReference: {fileID: 3647458190421851979, guid: 4982b1663ae598740a66a367705d594f,
-        type: 3}
-    - target: {fileID: 3866545021136074960, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: DropSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 933a43c507d9f4a599981f82514a27b1, type: 3}
-    - target: {fileID: 3866545021136074960, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: PickUpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 88da4f2c6584f42088130931242a162a, type: 3}
-    - target: {fileID: 3866545021136074960, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: TickSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 99213f2df2fba49a4a73c4aaca245632, type: 3}
     - target: {fileID: 3866545021136074961, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
         type: 3}
       propertyPath: m_Name
