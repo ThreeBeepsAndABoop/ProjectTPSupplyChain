@@ -65,7 +65,7 @@ public class ComponentSlot : MonoBehaviour
 
     public void ReleaseComponent()
     {
-        if (_heldComponent)
+        if (_heldComponent && !GameManager.Instance.PlayerInventory.IsFull())
         {
             var rbs = _heldComponent.GetComponentsInChildren<Rigidbody>();
             foreach (var rb in rbs)

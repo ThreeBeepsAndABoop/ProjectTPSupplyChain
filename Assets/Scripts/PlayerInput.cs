@@ -15,6 +15,9 @@ public class PlayerInput : MonoBehaviour
 
     LayerMask raycastMask = ~(1 << 2);
 
+    private float m_ScrollWheelSensitivity = 0.1f;
+    private float m_AccumlatedScrollWheelDelta;
+
     const int range = 4;
     private void handleGameInteraction()
     {
@@ -33,6 +36,26 @@ public class PlayerInput : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             GameManager.Instance.PlayerInventory.SelectItem(3);
+        }
+
+        float scrollDelta = Input.mouseScrollDelta.y;
+        if(scrollDelta == 0)
+        {
+            m_AccumlatedScrollWheelDelta = 0;
+        } else
+        {
+            m_AccumlatedScrollWheelDelta += scrollDelta;
+        }
+
+        if(m_AccumlatedScrollWheelDelta > m_ScrollWheelSensitivity)
+        {
+            GameManager.Instance.PlayerInventory.SelectNextItem();
+            m_AccumlatedScrollWheelDelta = 0;
+        }
+        else if (m_AccumlatedScrollWheelDelta < -m_ScrollWheelSensitivity)
+        {
+            GameManager.Instance.PlayerInventory.SelectPreviousItem();
+            m_AccumlatedScrollWheelDelta = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Q))

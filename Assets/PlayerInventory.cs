@@ -15,10 +15,18 @@ public class PlayerInventory : MonoBehaviour
     private RectTransform _inventoryHighlight;
     private GameObject _quitPanelGO;
     private int[] _cachedLayers;
+    private int _count;
+
+    public int Count { get { return _count; } }
 
     public int SelectedItemIndex;
     public int InventoryCapacity = 4;
     public int InventoryCount { get { return _inventory.Length; } }
+
+    public bool IsFull()
+    {
+        return Count >= InventoryCapacity;
+    }
 
     public Grabbable GetInventoryItem(int index)
     {
@@ -37,7 +45,12 @@ public class PlayerInventory : MonoBehaviour
 
     public void SelectPreviousItem()
     {
-        SelectItem((SelectedItemIndex - 1) % InventoryCapacity);
+        int index = (SelectedItemIndex - 1);
+        if (index < 0)
+        {
+            index = InventoryCapacity - 1;
+        }
+        SelectItem(index);
     }
 
     public bool SelectItem(int index)
@@ -177,6 +190,7 @@ public class PlayerInventory : MonoBehaviour
         _inventorySlots[firstFreeIndex].enabled = true;
         _inventorySlots[firstFreeIndex].sprite = grabbable.icon;
 
+        _count += 1;
         return true;
     }
 
@@ -216,6 +230,7 @@ public class PlayerInventory : MonoBehaviour
             _inventorySlots[index].enabled = false;
             _inventorySlots[index].sprite = null;
 
+            _count -= 1;
             return true;
         }
         else
