@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
 using Lightbug.GrabIt;
 using TMPro;
 
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public GrabIt GrabIt;
+
+    private TextMeshProUGUI _timeLeftLabel;
 
     public void RequestPlayButtonClickSound()
     {
@@ -95,6 +98,7 @@ public class GameManager : MonoBehaviour
         Player = GameObject.Find("Player").gameObject;
         PlayerInventory = Player.GetComponent<PlayerInventory>();
         timeleft = totalGameTime;
+        _timeLeftLabel = GameObject.Find("TIMELEFT_TEXT").GetComponent<TextMeshProUGUI>();
 
         GameObject firstPersonCharacter = Player.transform.Find("FirstPersonCharacter").gameObject;
         GrabIt = firstPersonCharacter.GetComponent<GrabIt>();
@@ -128,7 +132,9 @@ public class GameManager : MonoBehaviour
             gameOverComplete = true;
         } else if(timeleft > 0)
         {
-
+            TimeSpan t = TimeSpan.FromSeconds(timeleft);
+            string timeStr = t.ToString(@"hm\:ss\:fff");
+            _timeLeftLabel.text = timeStr + " until supernova";
         }
     }
 }
