@@ -961,6 +961,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4982b1663ae598740a66a367705d594f, type: 3}
+--- !u!114 &200183626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2961195578171162567, guid: 3033133f351ac7f408a352e0f2ef32a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1820688338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd061b696cd21b488600e88fe25b8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &233182732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1093,6 +1105,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2961195578171162567, guid: 3033133f351ac7f408a352e0f2ef32a9,
+        type: 3}
+      propertyPath: sidePanelMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: a50ca536c71da8b4b83e0c8c71b52d65, type: 2}
     - target: {fileID: 3148586243660891990, guid: 3033133f351ac7f408a352e0f2ef32a9,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1429,6 +1446,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1426b54b1a2eacd409b804fb887e52ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machineName: Generatror
+  terminal: {fileID: 604441098}
+  statusPole: {fileID: 1212804230}
+  components: []
+  componentRequests:
+  - componentType: 0
+    effect: 
+    minCount: 2
+    maxCount: 2
+  - componentType: 1
+    effect: 
+    minCount: 1
+    maxCount: 2
+  bufferedResources: []
+  requiredResources: []
+  suppliableResources:
+  - resourceType: 0
+    amount: 1000
+  machineStatus: 0
+  requiredTime: 1
 --- !u!1001 &382813504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1871,6 +1908,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c774ef77ed719450f813d46192a6dfe8, type: 3}
+--- !u!114 &604441098 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2961195578171162567, guid: 3033133f351ac7f408a352e0f2ef32a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 233182732}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd061b696cd21b488600e88fe25b8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &696569811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1735203502991611615, guid: 3033133f351ac7f408a352e0f2ef32a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1820688338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e323f89f86f5e0546ad865d8798bf617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &735836301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2269,7 +2330,23 @@ MonoBehaviour:
   terminal: {fileID: 1507701316}
   statusPole: {fileID: 1312676091}
   components: []
-  componentRequests: []
+  componentRequests:
+  - componentType: 0
+    effect: 
+    minCount: 1
+    maxCount: 2
+  - componentType: 1
+    effect: 
+    minCount: 0
+    maxCount: 2
+  - componentType: 4
+    effect: 
+    minCount: 0
+    maxCount: 2
+  - componentType: 3
+    effect: 
+    minCount: 0
+    maxCount: 2
   bufferedResources: []
   requiredResources: []
   suppliableResources: []
@@ -2278,6 +2355,38 @@ MonoBehaviour:
   reactionGlow: {fileID: 0}
   engineFlapTranslationOne: {fileID: 0}
   engineFlapTranslationTwo: {fileID: 0}
+--- !u!1 &921611165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7846888711217750427, guid: 3033133f351ac7f408a352e0f2ef32a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1820688338}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &921611170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921611165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8581697343f46974f80f90a2407ed1ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machineName: Life Support
+  terminal: {fileID: 200183626}
+  statusPole: {fileID: 696569811}
+  components: []
+  componentRequests: []
+  bufferedResources: []
+  requiredResources:
+  - resourceType: 0
+    amount: 100
+  suppliableResources:
+  - resourceType: 1
+    amount: 1000
+  machineStatus: 0
+  requiredTime: 0
 --- !u!1001 &942864866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2792,6 +2901,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4803a22f1e6c3475cb9e01579b20c675, type: 3}
+--- !u!114 &1212804230 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1735203502991611615, guid: 3033133f351ac7f408a352e0f2ef32a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 233182732}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e323f89f86f5e0546ad865d8798bf617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1213222099
 PrefabInstance:
   m_ObjectHideFlags: 0
