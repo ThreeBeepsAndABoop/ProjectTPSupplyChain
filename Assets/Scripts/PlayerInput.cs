@@ -8,12 +8,14 @@ public class PlayerInput : MonoBehaviour
 {
     private Camera m_Camera;
     private TextMeshProUGUI m_crosshairText;
+    private StatusToolCameraInteraction m_statusToolCamInteraction;
 
     // Start is called before the first frame update
     void Start()
     {
         m_Camera = Camera.main;
         m_crosshairText = GameObject.Find("CROSSHAIR_TEXT").GetComponent<TextMeshProUGUI>();
+        m_statusToolCamInteraction = GameObject.Find("StatusTool").GetComponent<StatusToolCameraInteraction>();
     }
 
     LayerMask raycastMask = ~(1 << 2);
@@ -22,7 +24,8 @@ public class PlayerInput : MonoBehaviour
     private float m_AccumlatedScrollWheelDelta;
 
     const int range = 4;
-    private void handleGameInteraction()
+
+    private void handleInventoryInteraction()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -45,16 +48,17 @@ public class PlayerInput : MonoBehaviour
             GameManager.Instance.PlayerInventory.SelectItem(3);
         }
 
-        float scrollDelta = Input.mouseScrollDelta.y;
-        if(scrollDelta == 0)
+        float scrollDelta = Input.mouseScrollDelta.magnitude;
+        if (scrollDelta == 0)
         {
             m_AccumlatedScrollWheelDelta = 0;
-        } else
+        }
+        else
         {
             m_AccumlatedScrollWheelDelta += scrollDelta;
         }
 
-        if(m_AccumlatedScrollWheelDelta > m_ScrollWheelSensitivity)
+        if (m_AccumlatedScrollWheelDelta > m_ScrollWheelSensitivity)
         {
             GameManager.Instance.RequestPlayTickSound();
             GameManager.Instance.PlayerInventory.SelectNextItem();
@@ -65,6 +69,14 @@ public class PlayerInput : MonoBehaviour
             GameManager.Instance.RequestPlayTickSound();
             GameManager.Instance.PlayerInventory.SelectPreviousItem();
             m_AccumlatedScrollWheelDelta = 0;
+        }
+    }
+
+    private void handleGameInteraction()
+    {
+        if (!m_statusToolCamInteraction.isOpen)
+        {
+            handleInventoryInteraction();
         }
 
         RaycastHit hoverTextHitInfo;
