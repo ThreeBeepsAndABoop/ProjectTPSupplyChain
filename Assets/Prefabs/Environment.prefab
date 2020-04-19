@@ -349,10 +349,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1147436343344139583}
     m_Modifications:
+    - target: {fileID: 3211017583330345824, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211017583429202090, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211017583429202090, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 3211017583722219457, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -213.78119
+      value: -10141
       objectReference: {fileID: 0}
     - target: {fileID: 3211017583722219457, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
         type: 3}
@@ -362,7 +377,7 @@ PrefabInstance:
     - target: {fileID: 3211017583722219457, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.9109116
+      value: 2119
       objectReference: {fileID: 0}
     - target: {fileID: 3211017583722219457, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
         type: 3}
@@ -407,17 +422,17 @@ PrefabInstance:
     - target: {fileID: 3211017583722219457, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 119.838036
       objectReference: {fileID: 0}
     - target: {fileID: 3211017583722219457, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 119.838036
       objectReference: {fileID: 0}
     - target: {fileID: 3211017583722219457, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 119.838036
       objectReference: {fileID: 0}
     - target: {fileID: 3211017583722219486, guid: b28ed64e8048d4ea8ba1af079ba1ec86,
         type: 3}
@@ -434,7 +449,8 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3211017584435212240, guid: b28ed64e8048d4ea8ba1af079ba1ec86, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b28ed64e8048d4ea8ba1af079ba1ec86, type: 3}
 --- !u!4 &2140608774819433540 stripped
 Transform:
