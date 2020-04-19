@@ -256,7 +256,7 @@ MonoBehaviour:
   type: 2
   Grabbed: 0
   InPlayerInventory: 0
-  icon: {fileID: 21300000, guid: 5c45cf76241c34519abcc5bbff896de6, type: 3}
+  icon: {fileID: 21300000, guid: c9a42f7bd979b471f9e944bbf7a920c9, type: 3}
   name: Motor
 --- !u!136 &3647458190421851976
 CapsuleCollider:
