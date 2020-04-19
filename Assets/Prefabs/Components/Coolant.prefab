@@ -101,7 +101,7 @@ MonoBehaviour:
   type: 2
   Grabbed: 0
   InPlayerInventory: 0
-  icon: {fileID: 21300000, guid: 5c45cf76241c34519abcc5bbff896de6, type: 3}
+  icon: {fileID: 21300000, guid: b14bfba4c5007403fbb2d6ec2394c713, type: 3}
 --- !u!54 &6359660342696986853
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -108,11 +108,6 @@ public class PlayerInventory : MonoBehaviour
             return false;
         }
 
-        foreach (Transform trans in selectedItem.transform.GetComponentsInChildren<Transform>(true))
-        {
-            trans.gameObject.layer = _cachedLayers[SelectedItemIndex];
-        }
-
         // Loop forward to find next item to select
         int newSelectedItemIndex = 0;
         for (int i = 1; i < InventoryCapacity; i++)
@@ -201,10 +196,6 @@ public class PlayerInventory : MonoBehaviour
         if (index >= 0)
         {
             Debug.Log("Inventory remove " + grabbable + " at index " + index);
-            if (grabbable == GetSelectedItem())
-            {
-                DeselectSelectedItem();
-            }
             _inventory[index] = null;
             grabbable.InPlayerInventory = false;
             grabbable.transform.parent = null;
