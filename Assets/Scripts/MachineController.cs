@@ -268,6 +268,29 @@ public class MachineController : MonoBehaviour
         if (color != null) { str = "<color=" + color + ">" + str + "</color>"; }
     }
 
+    string ColorForItemStatus(string itemStatus)
+    {
+        const string alertColor = "#FF0000";
+        const string warningColor = "#FF4500";
+
+        int number;
+        itemStatus = itemStatus.Replace("%", "");
+        bool success = int.TryParse(itemStatus, out number);
+        if (success)
+        {
+            if (number < 20) { return alertColor; }
+            else if (number < 60) { return warningColor; }
+            else { return null; }
+        }
+        else
+        {
+            if (itemStatus == "REQ.") { return alertColor; }
+            else if (itemStatus == "EMPTY") { return warningColor; }
+        }
+
+        return null;
+    }
+
     void PrintComponents()
     {
         if (componentRequests.Count == 0)
@@ -306,16 +329,8 @@ public class MachineController : MonoBehaviour
                 }
             }
 
-            const string alertColor = "#FF0000";
-
-            string colorItemStatus1 = null;
-            if (itemStatuses[0] == "REQ." || itemStatuses[0] == "0%") { colorItemStatus1 = alertColor; }
-
-            string colorItemStatus2 = null;
-            if (itemStatuses[1] == "REQ." || itemStatuses[1] == "0%") { colorItemStatus2 = alertColor; }
-
             PrintTableLine(req.componentType.machineComponentName(), req.effect, req.minCount.ToString(), req.maxCount.ToString(), itemStatuses[0], itemStatuses[1],
-                null, null, null, null, colorItemStatus1, colorItemStatus2,
+                null, null, null, null, ColorForItemStatus(itemStatuses[0]), ColorForItemStatus(itemStatuses[1]),
                 ' ');
         }
     }
