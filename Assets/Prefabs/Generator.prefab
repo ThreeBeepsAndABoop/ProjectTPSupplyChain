@@ -11647,6 +11647,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Computer Slot
       objectReference: {fileID: 0}
+    - target: {fileID: 2049749773499213668, guid: f5dfa382608b4ae428420bb6eb412142,
+        type: 3}
+      propertyPath: StartFilled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2844209264282851433, guid: f5dfa382608b4ae428420bb6eb412142,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -12023,6 +12028,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Computer Slot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2049749773499213668, guid: f5dfa382608b4ae428420bb6eb412142,
+        type: 3}
+      propertyPath: StartFilled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2844209264282851433, guid: f5dfa382608b4ae428420bb6eb412142,
         type: 3}
