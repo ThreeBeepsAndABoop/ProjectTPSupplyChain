@@ -371,8 +371,8 @@ public class GameManager : MonoBehaviour
     void DisplayFailureMessage()
     {
         Invoke("DisplayFailure1", 1.5f);
-        Invoke("DisplayFailure2", 5.0f);
-        Invoke("DisplayFailure3", 7.5f);
+        Invoke("DisplayFailure2", 10.0f);
+        Invoke("DisplayFailure3", 15.0f);
     }
 
     // Start is called before the first frame update

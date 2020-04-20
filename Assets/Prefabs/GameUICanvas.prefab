@@ -534,7 +534,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Despite your best efforts, \nyou were unable to keep \nthe Starship Ludum
-    \nalive long enough\nto start the FTL Jump Drive."
+    alive.\n\nThough you could not start the FTL Jump Drive,\nthe warning signal
+    your ship sent will be heard \nthroughout the galaxy."
 --- !u!1 &1915862736
 GameObject:
   m_ObjectHideFlags: 0
