@@ -228,8 +228,15 @@ public class PlayerInventory : MonoBehaviour
         return true;
     }
 
+
+    public bool DropSelected()
+    {
+        return Drop(GetSelectedItem());
+    }
+
     public bool Drop(Grabbable grabbable)
     {
+        if(grabbable == null) { return false; }
         int index = -1;
         for (int i = 0; i < _inventory.Length; i++)
         {
@@ -239,7 +246,7 @@ public class PlayerInventory : MonoBehaviour
                 break;
             }
         }
-        if (index >= 0)
+        if (index >= 0 && index < _inventory.Length)
         {
             if(index == SelectedItemIndex)
             {

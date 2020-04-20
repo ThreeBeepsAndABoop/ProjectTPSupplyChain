@@ -15,39 +15,39 @@ public class Interactable : MonoBehaviour
 {
     public InteractableType type;
 
-    public virtual void Interact(RaycastHit hitInfo)
+    public virtual bool Interact(RaycastHit hitInfo)
     {
         switch(type)
         {
             case InteractableType.Button:
                 transform.parent.GetComponent<WorldButton>().Press();
-                break;
+                return true;
             case InteractableType.ComponentSlot:
                 GetComponent<ComponentSlot>().Interact();
-                break;
+                return true;
             default:
-                break;
+                return true;
         }
     }
 
-    public virtual void InteractSecondary(RaycastHit hitInfo)
+    public virtual bool InteractSecondary(RaycastHit hitInfo)
     {
         switch (type)
         {
             default:
-                break;
+                return false;
         }
     }
 
-    public virtual void InteractTertiary(RaycastHit hitInfo)
+    public virtual bool InteractTertiary(RaycastHit hitInfo)
     {
         switch (type)
         {
             case InteractableType.Box:
                 transform.GetComponent<Box>().open = !transform.GetComponent<Box>().open;
-                break;
+                return true;
             default:
-                break;
+                return false;
         }
     }
 }

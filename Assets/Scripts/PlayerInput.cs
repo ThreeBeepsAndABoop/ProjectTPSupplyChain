@@ -123,14 +123,21 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             RaycastHit hitInfo;
-            if (Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hitInfo, range, raycastMask))
+            bool raycastHit = Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hitInfo, range, raycastMask);
+            bool shouldDropItem = true;
+            if (raycastHit)
             {
                 Interactable interactable = hitInfo.collider.gameObject.GetComponent<Interactable>();
                 if (interactable != null)
                 {
                     Debug.Log("InteractSecondary");
-                    interactable.InteractSecondary(hitInfo);
+                    shouldDropItem = !interactable.InteractSecondary(hitInfo);
                 }
+            }
+
+            if (shouldDropItem)
+            {
+                GameManager.Instance.PlayerInventory.DropSelected();
             }
         }
 

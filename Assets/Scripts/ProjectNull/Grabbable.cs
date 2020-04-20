@@ -10,17 +10,21 @@ public class Grabbable : Interactable
     public Sprite icon;
     public string name;
 
-    public override void Interact(RaycastHit hitInfo)
+    public override bool Interact(RaycastHit hitInfo)
     {
         //GameManager.Instance.GrabIt.Grab(hitInfo.distance, this);
         if(!InPlayerInventory)
         {
             GameManager.Instance.PlayerInventory.PickUp(this);
         }
+
+        return true;
     }
 
-    public override void InteractSecondary(RaycastHit hitInfo)
+    public override bool InteractSecondary(RaycastHit hitInfo)
     {
         //GameManager.Instance.GrabIt.Yeet(this);
+
+        return false;
     }
 }
