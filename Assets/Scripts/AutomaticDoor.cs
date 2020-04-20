@@ -29,8 +29,8 @@ public class AutomaticDoor : MonoBehaviour
         {
             if (distanceLifted < meshRenderer.bounds.size.y)
             {
-                door.transform.Translate(Vector3.up * Time.deltaTime * 1.5f);
-                distanceLifted += Time.deltaTime * 1.5f;
+                door.transform.Translate(Vector3.up * Time.deltaTime * 7.5f);
+                distanceLifted += Time.deltaTime * 7.5f;
 
                 if (distanceLifted > meshRenderer.bounds.size.y) {
                     door.transform.Translate(Vector3.down * (distanceLifted - meshRenderer.bounds.size.y));
@@ -42,8 +42,8 @@ public class AutomaticDoor : MonoBehaviour
         {
             if (distanceLifted > 0)
             {
-                door.transform.Translate(Vector3.down * Time.deltaTime * 1.5f);
-                distanceLifted -= Time.deltaTime * 1.5f;
+                door.transform.Translate(Vector3.down * Time.deltaTime * 7.5f);
+                distanceLifted -= Time.deltaTime * 7.5f;
 
                 if (distanceLifted < 0) {
                     door.transform.Translate(Vector3.up * -distanceLifted);
