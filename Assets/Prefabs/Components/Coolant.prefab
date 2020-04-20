@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6359660342675924746}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 6359660342696986855}
   - component: {fileID: 6359660342696986853}
   - component: {fileID: 6359660342696986852}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Coolant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,10 +85,6 @@ MonoBehaviour:
   Condition: 1
   Type: 1
   Slot: {fileID: 0}
-  isBroken: 0
-  particals: {fileID: 5863347260658938958, guid: 74cd41a63ad817a429bf7ca5eb180336,
-    type: 3}
-  brokenMaterial: {fileID: 2100000, guid: 79e430cdc48c7ee4e8a6eeb582e412a9, type: 2}
 --- !u!114 &6359660342696986855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +142,7 @@ GameObject:
   - component: {fileID: 6359660342708226359}
   - component: {fileID: 6359660342708226354}
   - component: {fileID: 6359660342708226353}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +221,7 @@ GameObject:
   - component: {fileID: 6359660342809436454}
   - component: {fileID: 6359660342809436449}
   - component: {fileID: 6359660342809436448}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +300,7 @@ GameObject:
   - component: {fileID: 6359660343468169412}
   - component: {fileID: 6359660343468169415}
   - component: {fileID: 6359660343468169414}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +379,7 @@ GameObject:
   - component: {fileID: 6359660343840818207}
   - component: {fileID: 6359660343840818202}
   - component: {fileID: 6359660343840818201}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +458,7 @@ GameObject:
   - component: {fileID: 6359660344155959232}
   - component: {fileID: 6359660344155959235}
   - component: {fileID: 6359660344155959234}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
