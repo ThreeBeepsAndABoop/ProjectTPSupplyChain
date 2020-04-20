@@ -518,14 +518,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17478e13d774ba245b4155991e12228a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  systemName: Battery Storage
+  type: 0
   current: 0.5
   lowWatermark: 0
   systemNameText: {fileID: 1716715107752406725}
   systemStatusText: {fileID: 748917845390094523}
   systemProgressText: {fileID: 1858818921454327650}
   systemLowWatermarkText: {fileID: 1148100484320640080}
-  emisivePart: {fileID: 0}
+  refreshTime: 0.1
 --- !u!222 &4595468967499202814
 CanvasRenderer:
   m_ObjectHideFlags: 0

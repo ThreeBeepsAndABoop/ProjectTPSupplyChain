@@ -22,15 +22,30 @@ public class SensorStatusIndicator : MonoBehaviour
     public GameObject sensorStatusText;
     public GameObject sensorProgressText;
 
+    private float currentRefreshTime;
+
+    [Range(0.0f, 1.0f)]
+    public float refreshTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentRefreshTime = refreshTime;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        currentRefreshTime += Time.deltaTime;
+        if (currentRefreshTime >= refreshTime)
+        {
+            currentRefreshTime -= refreshTime;
+            UpdateSreen();
+        }
+    }
+
+    // Update is called once per frame
+    void UpdateSreen()
     {
         /// Compute
 
