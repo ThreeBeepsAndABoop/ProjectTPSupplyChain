@@ -63,7 +63,7 @@ MonoBehaviour:
   statusColor: 0
   blinkTime: 0
   blinkSpeed: 1
-  intensity: 2
+  intensity: 1
   blinkCurve:
     serializedVersion: 2
     m_Curve:

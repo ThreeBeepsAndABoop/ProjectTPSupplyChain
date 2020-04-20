@@ -20,15 +20,30 @@ public class SystemStatusIndicator : MonoBehaviour
     public GameObject systemProgressText;
     public GameObject systemLowWatermarkText;
 
+    private float currentRefreshTime;
+
+    [Range(0.0f, 1.0f)]
+    public float refreshTime;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentRefreshTime = refreshTime;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        currentRefreshTime += Time.deltaTime;
+        if (currentRefreshTime >= refreshTime)
+        {
+            currentRefreshTime -= refreshTime;
+            UpdateSreen();
+        }
+    }
+
+    void UpdateSreen() 
     {
         /// Compute
         Resource res = GameManager.Instance.ResourceManager.ResourceForType(type);
