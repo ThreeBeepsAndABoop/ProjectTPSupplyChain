@@ -1807,11 +1807,6 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6511352615815544469, guid: 78a4e6169956e4ec2a4c45234333a528,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -60.59
-      objectReference: {fileID: 0}
     - target: {fileID: 6570363472737892647, guid: 78a4e6169956e4ec2a4c45234333a528,
         type: 3}
       propertyPath: m_Name
@@ -2141,11 +2136,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9212136673503976633, guid: 78a4e6169956e4ec2a4c45234333a528,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -60.59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78a4e6169956e4ec2a4c45234333a528, type: 3}
