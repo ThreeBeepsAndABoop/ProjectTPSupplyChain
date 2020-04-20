@@ -207,6 +207,50 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FlashStatusToolEnumerator(iterations));
     }
 
+    IEnumerator FlashScreenEnumerator(float duration)
+    {
+        // TODO: Genericize
+        GameObject screenFlashGO = GameObject.Find("SCREEN_FLASH");
+
+        if (!screenFlashGO)
+        {
+            yield break;
+        }
+
+        Image screenFlash = screenFlashGO.GetComponent<Image>();
+
+        Color screenFlashColorStart = screenFlash.color;
+
+        float startTime = Time.time;
+        float endTime = startTime + duration;
+
+        yield return null;
+        while (Time.time < endTime)
+        {
+            float pct = (1 - (endTime - Time.time)) / (endTime - startTime);
+
+            if (pct < 0.5)
+            {
+                pct *= 2;
+                screenFlash.color = Color.Lerp(screenFlashColorStart, Color.white, pct);
+            }
+            else
+            {
+                pct = (pct - .5f) * 2f;
+                screenFlash.color = Color.Lerp(Color.white, screenFlashColorStart, pct);
+            }
+
+            yield return null;
+        }
+
+        screenFlash.color = screenFlashColorStart;
+    }
+
+    public void FlashScreen(float duration = 0.7f)
+    {
+        StartCoroutine(FlashScreenEnumerator(duration));
+    }
+
     IEnumerator FadeTextInEnumerator(Text text, float duration)
     {
         float startTime = Time.time;
@@ -223,6 +267,28 @@ public class GameManager : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    IEnumerator FadeTextInEnumeratorAndFadeOut(Text text, float duration, float fadeOutAfter)
+    {
+        StartCoroutine(FadeTextInEnumerator(text, duration));
+
+        float waitDuration = fadeOutAfter;
+        float startTime = Time.time;
+        float endTime = startTime + waitDuration;
+
+        yield return null;
+        while (Time.time < endTime)
+        {
+            yield return null;
+        }
+
+        StartCoroutine(FadeTextOutEnumerator(text, duration));
+    }
+
+    public void FadeTextInAndOut(Text text, float durationToFade, float fadeOutAfter)
+    {
+        StartCoroutine(FadeTextInEnumeratorAndFadeOut(text, durationToFade, fadeOutAfter));
     }
 
     IEnumerator FadeTextOutEnumerator(Text text, float duration)
