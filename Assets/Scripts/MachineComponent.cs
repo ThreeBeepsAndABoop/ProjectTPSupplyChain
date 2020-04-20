@@ -10,6 +10,7 @@ public enum MachineComponentType {
     Motor,
     Computer,
     Compressor,
+    Broken
 }
 
 public static class MachineComponentTypeExtensions
@@ -31,7 +32,11 @@ public static class MachineComponentTypeExtensions
         } else if (machineComponent == MachineComponentType.Compressor)
         {
             return "Compressor";
-        } else
+        } else if (machineComponent == MachineComponentType.Broken)
+        {
+            return "Broken Component";
+        }
+        else
         {
             return "Invalid";
         }
@@ -44,6 +49,10 @@ public class MachineComponent : MonoBehaviour
     public double Condition = 1;
     public MachineComponentType Type;
     public ComponentSlot Slot;
+    public bool isBroken;
+
+    public GameObject particals;
+    public Material brokenMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +63,22 @@ public class MachineComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+        if (!isBroken && Condition < 0.005)
+        {
+            isBroken = true;
+            Condition = 0;
+            Type = MachineComponentType.Broken;
+            Instantiate(particals, transform);
+
+            if (GetComponent<Renderer>() != null)
+            {
+                GetComponent<Renderer>().material = brokenMaterial;
+            }
+            
+            foreach (Renderer renderer in GetComponentsInChildren(typeof(Renderer)))
+            {
+                renderer.material = brokenMaterial;
+            }
+        }
     }
 }

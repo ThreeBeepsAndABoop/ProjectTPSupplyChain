@@ -49,6 +49,8 @@ public class LifeSupportMachine : MachineController
                 {
                     cmp.Condition -= 0.001;
                 }
+
+                cmp.Condition = Math.Max(cmp.Condition, 0);
             }
         }
 

@@ -65,7 +65,7 @@ public class MachineController : MonoBehaviour
         Dictionary<MachineComponentType, MachineComponentSummaryRequest> componentCounts = new Dictionary<MachineComponentType, MachineComponentSummaryRequest>();
         foreach (MachineComponent component in components)
         {
-            if (component == null) { continue; }
+            if (component == null || component.isBroken) { continue; }
 
 
             if (componentCounts.ContainsKey(component.Type))
@@ -313,7 +313,7 @@ public class MachineController : MonoBehaviour
             List<string> itemStatuses = new List<string>();
             foreach (MachineComponent cmp in components)
             {
-                if (cmp != null && cmp.Type == req.componentType)
+                if (cmp != null && cmp.Type == req.componentType && !cmp.isBroken)
                 {
                     itemStatuses.Add(Math.Round(cmp.Condition * 100).ToString() + "%");
                 }
