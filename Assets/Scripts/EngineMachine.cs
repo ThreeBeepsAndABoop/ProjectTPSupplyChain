@@ -45,6 +45,16 @@ public class EngineMachine : MachineController
         var totalRequestedComponents = 0;
         foreach (var row in componentCounts)
         {
+            if (row.Key == MachineComponentType.Broken)
+            {
+                continue; // Don't count broken components, but it does not make us broken either.
+            }
+
+            if (row.Value.maxCount <= 0)
+            {
+                continue; // Don't count components that happen to be attached, but not required. This is a fix for basically only the example machine.
+            }
+
             if (row.Value.components.Count < row.Value.minCount)
             {
                 return MachineStatus.Broken;
@@ -54,7 +64,7 @@ public class EngineMachine : MachineController
             totalRequestedComponents += row.Value.maxCount;
         }
 
-        var lowEffMode = totalComponents < totalRequestedComponents / 2;
+        var lowEffMode = totalComponents <= totalRequestedComponents / 2;
 
         foreach (var row in componentCounts)
         {

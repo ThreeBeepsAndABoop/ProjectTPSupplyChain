@@ -321,7 +321,7 @@ public class MachineController : MonoBehaviour
 
             while (itemStatuses.Count < 2)
             {
-                if (itemStatuses.Count > req.maxCount)
+                if (itemStatuses.Count >= req.maxCount)
                 {
                     itemStatuses.Add("N/A");
                 }

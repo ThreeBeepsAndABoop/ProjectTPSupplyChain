@@ -24,12 +24,7 @@ public class GeneratorMachine : MachineController
 
         if (statusPole.statusColor != _previousStatus)
         {
-            //if (reactionGlow == null) { return; }
             _previousStatus = statusPole.statusColor;
-
-            //reactionGlow.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
-            //engineFlapTranslationOne.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
-            //engineFlapTranslationTwo.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
             foreach (GameObject obj in runningObjects)
             {
                 obj.SetActive(statusPole.statusColor != StatusPoleLightColor.Error);
@@ -65,7 +60,7 @@ public class GeneratorMachine : MachineController
             totalRequestedComponents += row.Value.maxCount;
         }
 
-        var lowEffMode = totalComponents < totalRequestedComponents / 2;
+        var lowEffMode = totalComponents <= totalRequestedComponents / 2;
 
         foreach (var row in componentCounts)
         {
@@ -88,8 +83,8 @@ public class GeneratorMachine : MachineController
         // Determine what we need
         var coolent     = componentCounts[MachineComponentType.Coolant].Percent();
         var motors      = componentCounts[MachineComponentType.Motor].Percent();
-        var compressor  = componentCounts[MachineComponentType.Compressor].Percent();
-        var eff = (coolent * 4000) + (motors * 4000) + (compressor * 1000) + 1000;
+        var computer  = componentCounts[MachineComponentType.Computer].Percent();
+        var eff = (coolent * 4000) + (motors * 4000) + (computer * 1000) + 1000;
 
         // Generators Use Nothing.
         requiredResources.Clear();

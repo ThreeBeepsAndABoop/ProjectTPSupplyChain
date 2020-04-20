@@ -5,16 +5,31 @@ using System;
 
 public class LifeSupportMachine : MachineController
 {
+    private StatusPoleLightColor _previousStatus;
+
+    public List<GameObject> runningObjects;
+
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
+
+        _previousStatus = statusPole.statusColor;
     }
 
     // Update is called once per frame
     void Update()
     {
         base.Update();
+
+        if (statusPole.statusColor != _previousStatus)
+        {
+            _previousStatus = statusPole.statusColor;
+            foreach (GameObject obj in runningObjects)
+            {
+                obj.SetActive(statusPole.statusColor != StatusPoleLightColor.Error);
+            }
+        }
     }
 
     override public MachineStatus UpdateResourceRequestsFromCounts(Dictionary<MachineComponentType, MachineComponentSummaryRequest> componentCounts)
@@ -26,6 +41,16 @@ public class LifeSupportMachine : MachineController
         var totalRequestedComponents = 0;
         foreach (var row in componentCounts)
         {
+            if (row.Key == MachineComponentType.Broken)
+            {
+                continue; // Don't count broken components, but it does not make us broken either.
+            }
+
+            if (row.Value.maxCount <= 0)
+            {
+                continue; // Don't count components that happen to be attached, but not required. This is a fix for basically only the example machine.
+            }
+
             if (row.Value.components.Count < row.Value.minCount)
             {
                 return MachineStatus.Broken;
@@ -35,7 +60,8 @@ public class LifeSupportMachine : MachineController
             totalRequestedComponents += row.Value.maxCount;
         }
 
-        var lowEffMode = totalComponents < totalRequestedComponents / 2;
+        var lowEffMode = totalComponents <= totalRequestedComponents / 2;
+        print(totalComponents + " " + totalRequestedComponents);
 
         foreach (var row in componentCounts)
         {
