@@ -5,16 +5,36 @@ using System;
 
 public class GeneratorMachine : MachineController
 {
+    private StatusPoleLightColor _previousStatus;
+
+    public List<GameObject> runningObjects;
+
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
+
+        _previousStatus = statusPole.statusColor;
     }
 
     // Update is called once per frame
     void Update()
     {
         base.Update();
+
+        if (statusPole.statusColor != _previousStatus)
+        {
+            //if (reactionGlow == null) { return; }
+            _previousStatus = statusPole.statusColor;
+
+            //reactionGlow.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
+            //engineFlapTranslationOne.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
+            //engineFlapTranslationTwo.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
+            foreach (GameObject obj in runningObjects)
+            {
+                obj.SetActive(statusPole.statusColor != StatusPoleLightColor.Error);
+            }
+        }
     }
 
     override public MachineStatus UpdateResourceRequestsFromCounts(Dictionary<MachineComponentType, MachineComponentSummaryRequest> componentCounts)
