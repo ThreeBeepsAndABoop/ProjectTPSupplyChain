@@ -61,7 +61,7 @@ MonoBehaviour:
     type: 3}
   CompressorPrefab: {fileID: 1479513425223442084, guid: 23fd2f91c4f4d704898b0acf664461cb,
     type: 3}
-  Debug: 0
+  _DEBUG: 0
   PlayBackgroundMusic: 0
   PlayBackgroundAmbience: 1
   ButtonClickSound: {fileID: 0}
@@ -74,6 +74,7 @@ MonoBehaviour:
   BackgroundMusic: {fileID: 0}
   BackgroundAmbience: {fileID: 8300000, guid: c5493e2cd772242aab5df06feaae44dd, type: 3}
   StatusToolPing: {fileID: 8300000, guid: 372b63922bfd14ceeb1c16bbc424f570, type: 3}
+  StatusToolPingLong: {fileID: 8300000, guid: bb51a2204c1c249378567878ba2a6421, type: 3}
   totalGameTime: 420
   timeleft: 420
   itemsPerBoxCurve:
@@ -116,19 +117,19 @@ MonoBehaviour:
   resources:
   - type: 0
     name: Battery Storage
-    currentAmount: 10000
-    maxAmount: 100000
+    currentAmount: 5000000
+    maxAmount: 10000000
     requiredAmount: 1000
   - type: 1
     name: Life Support Capacity
-    currentAmount: 3000
-    maxAmount: 10000
+    currentAmount: 5000
+    maxAmount: 20000
     requiredAmount: 1000
   - type: 2
     name: FTL Jump Drive Charge
-    currentAmount: 1000
-    maxAmount: 100000000
-    requiredAmount: 100000000
+    currentAmount: 0
+    maxAmount: 1000000
+    requiredAmount: 1000000
 --- !u!114 &3866545019149142815
 MonoBehaviour:
   m_ObjectHideFlags: 0

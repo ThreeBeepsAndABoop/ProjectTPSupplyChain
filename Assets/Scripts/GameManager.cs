@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public AudioClip BackgroundAmbience;
 
     public AudioClip StatusToolPing;
+    public AudioClip StatusToolPingLong;
 
     private AudioSource loudAudioSource;
     private AudioSource musicAudioSource;
@@ -250,6 +251,7 @@ public class GameManager : MonoBehaviour
     public void FlashScreen(float duration = 0.7f)
     {
         StartCoroutine(FlashScreenEnumerator(duration));
+        loudAudioSource.PlayOneShot(StatusToolPingLong, 0.5f);
     }
 
     IEnumerator FadeTextInEnumerator(Text text, float duration)

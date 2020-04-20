@@ -7497,41 +7497,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 3866545021136074962, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: resources.Array.data[2].requiredAmount
-      value: 1000000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866545021136074962, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: resources.Array.data[2].maxAmount
-      value: 1000000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866545021136074962, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: resources.Array.data[2].currentAmount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866545021136074962, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: resources.Array.data[1].currentAmount
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866545021136074962, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: resources.Array.data[0].currentAmount
-      value: 5000000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866545021136074962, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: resources.Array.data[1].maxAmount
-      value: 20000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866545021136074962, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
-        type: 3}
-      propertyPath: resources.Array.data[0].maxAmount
-      value: 10000000
-      objectReference: {fileID: 0}
     - target: {fileID: 3866545021136074963, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
         type: 3}
       propertyPath: m_LocalPosition.x
