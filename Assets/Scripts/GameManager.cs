@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public AnomalyManager AnomalyManager;
 
+    [HideInInspector]
+    public MachineComponentManager MachineComponentManager;
+
     public GameObject BatteryPrefab;
     public GameObject CoolantPrefab;
     public GameObject MotorPrefab;
@@ -287,7 +290,7 @@ public class GameManager : MonoBehaviour
         Player = GameObject.Find("Player").gameObject;
         PlayerInventory = Player.GetComponent<PlayerInventory>();
         timeleft = totalGameTime;
-
+        MachineComponentManager = GetComponent<MachineComponentManager>();
         AnomalyManager = GetComponent<AnomalyManager>();
 
         GameObject firstPersonCharacter = Player.transform.Find("FirstPersonCharacter").gameObject;

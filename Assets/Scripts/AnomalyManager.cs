@@ -118,5 +118,37 @@ public class AnomalyManager : MonoBehaviour
     void TriggerAnomaly(AnomalyType anomaly)
     {
         Debug.Log("Triggering Anomaly = " + anomaly.displayString());
+
+        var hs = new HashSet<MachineComponentType>();
+        var percentOfComponentsToDamage = 0.35f;
+        var damageToInflict = 0.25f;
+        switch(anomaly)
+        {
+            case AnomalyType.Asteroid:
+                foreach (MachineComponentType type in Enum.GetValues(typeof(AnomalyType)))
+                {
+                    hs.Add(type);
+                }
+                break;
+            case AnomalyType.ElectricalDischarge:
+                hs.Add(MachineComponentType.Compressor);
+                hs.Add(MachineComponentType.Motor);
+                hs.Add(MachineComponentType.Computer);
+                percentOfComponentsToDamage = 0.20f;
+                damageToInflict = 0.15f;
+                break;
+            case AnomalyType.SolarFlare:
+                hs.Add(MachineComponentType.Compressor);
+                hs.Add(MachineComponentType.Motor);
+                hs.Add(MachineComponentType.Computer);
+                percentOfComponentsToDamage = 0.50f;
+                damageToInflict = 0.35f;
+                break;
+            default:
+                return;
+        }
+
+
+        GameManager.Instance.MachineComponentManager.InflictDamageToAllComponentsOfTypes(hs, damageToInflict, percentOfComponentsToDamage);
     }
 }

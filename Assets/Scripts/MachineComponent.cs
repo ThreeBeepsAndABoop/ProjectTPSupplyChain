@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 
 public enum MachineComponentType {
-    Battery,
+    Battery = 0,
     Coolant,
     Motor,
     Computer,
@@ -57,7 +57,19 @@ public class MachineComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.MachineComponentManager.Register(this);
+    }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.MachineComponentManager.Unregister(this);
+    }
+
+    public void DamageCondition(float damage)
+    {
+        if(damage < 0) { return; }
+
+        Condition = Math.Max(Condition - damage, 0);
     }
 
     // Update is called once per frame
