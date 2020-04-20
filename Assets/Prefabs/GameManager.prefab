@@ -71,6 +71,7 @@ MonoBehaviour:
   NewBoxSound: {fileID: 0}
   BackgroundMusic: {fileID: 0}
   BackgroundAmbience: {fileID: 8300000, guid: c5493e2cd772242aab5df06feaae44dd, type: 3}
+  StatusToolPing: {fileID: 8300000, guid: 372b63922bfd14ceeb1c16bbc424f570, type: 3}
   totalGameTime: 420
   timeleft: 420
   itemsPerBoxCurve:
