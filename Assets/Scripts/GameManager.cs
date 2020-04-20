@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public AudioClip PickUpSound;
     public AudioClip DropSound;
     public AudioClip TickSound;
+    public AudioClip SunExplosionSound;
     public AudioClip MachineSound;
     public AudioClip NewBoxSound;
     public AudioClip BackgroundMusic;
@@ -51,9 +52,16 @@ public class GameManager : MonoBehaviour
 
     private TextMeshProUGUI _timeLeftLabel;
 
+    public string GameCompletionString()
+    {
+        TimeSpan t = TimeSpan.FromSeconds(timeleft);
+        string timeStr = t.ToString(@"hm\:ss\:fff");
+        return timeStr;
+    }
+
     public float GameCompletionPercentage()
     {
-        return (totalGameTime - timeleft) / totalGameTime;
+        return Math.Min(1, (totalGameTime - timeleft) / totalGameTime);
     }
 
     public void RequestPlayButtonClickSound()
@@ -61,6 +69,10 @@ public class GameManager : MonoBehaviour
         loudAudioSource.PlayOneShot(ButtonClickSound);
     }
 
+    public void RequestPlaySunExplosionSound()
+    {
+        loudAudioSource.PlayOneShot(SunExplosionSound);
+    }
 
     public void RequestPlayTickSound()
     {
@@ -128,7 +140,6 @@ public class GameManager : MonoBehaviour
         Player = GameObject.Find("Player").gameObject;
         PlayerInventory = Player.GetComponent<PlayerInventory>();
         timeleft = totalGameTime;
-        _timeLeftLabel = GameObject.Find("TIMELEFT_TEXT").GetComponent<TextMeshProUGUI>();
 
         GameObject firstPersonCharacter = Player.transform.Find("FirstPersonCharacter").gameObject;
         GrabIt = firstPersonCharacter.GetComponent<GrabIt>();
@@ -164,7 +175,6 @@ public class GameManager : MonoBehaviour
         {
             TimeSpan t = TimeSpan.FromSeconds(timeleft);
             string timeStr = t.ToString(@"hm\:ss\:fff");
-            _timeLeftLabel.text = timeStr + " until supernova";
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SunExpansion : MonoBehaviour
 {
@@ -18,18 +19,60 @@ public class SunExpansion : MonoBehaviour
     [Range(0, 1)]
     public float DebugPercentage = 0;
 
+    private Image _screenFlash;
     private Light _light;
 
     // Start is called before the first frame update
     void Start()
     {
         _light = transform.Find("Light").GetComponent<Light>();
+        _screenFlash = GameObject.Find("SCREEN_FLASH").GetComponent<Image>();
     }
+
+    bool _explosionBegun = false;
+    float _explosionDuration = 12;
 
     // Update is called once per frame
     void Update()
     {
-        float pct = GameManager.Instance.GameCompletionPercentage();
+        if(GameManager.Instance.timeleft < _explosionDuration)
+        {
+            // play sun explosion
+            ExplosiveSunGrowth();
+        } else {
+            NormalSunGrowth();
+        }
+    }
+
+    void ExplosiveSunGrowth()
+    {
+        if(!_explosionBegun)
+        {
+            GameManager.Instance.RequestPlaySunExplosionSound();
+        }
+
+        _explosionBegun = true;
+
+        float pct = (_explosionDuration - GameManager.Instance.timeleft) / _explosionDuration;
+
+        const float finalScaleTarget = 800f;
+        const float finalIntensityTarget = 6.0f;
+        Color finalColorTarget = Color.white;
+
+        float scale = pct * (finalScaleTarget - EndScale) + EndScale;
+        float intensity = pct * (finalIntensityTarget - EndIntensity) + EndIntensity;
+        Color color = Color.Lerp(EndColor, finalColorTarget, pct);
+
+        _screenFlash.color = new Color(1, 1, 1, pct * pct * pct);
+
+        transform.localScale = new Vector3(scale, scale, scale);
+        _light.intensity = intensity;
+        _light.color = color;
+    }
+
+    void NormalSunGrowth()
+    {
+        float pct = (GameManager.Instance.totalGameTime - GameManager.Instance.timeleft) / (GameManager.Instance.totalGameTime - _explosionDuration);
 
         if (Debug)
         {
