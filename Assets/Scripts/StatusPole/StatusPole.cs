@@ -23,6 +23,11 @@ public class StatusPole : MonoBehaviour
 
     public AnimationCurve blinkCurve;
 
+    public AudioClip badSound;
+    public AudioClip okishSound;
+
+    public AudioSource speaker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +51,16 @@ public class StatusPole : MonoBehaviour
             {
                 blinkTime -= 1;
             }
+            var prevIntensity = light.intensity;
             light.intensity = blinkCurve.Evaluate(blinkTime) * intensity;
+
+            if (light.intensity >= 0.5 && prevIntensity < 0.5 ) {
+                if (statusColor == StatusPoleLightColor.Error) {
+                    speaker.PlayOneShot(badSound);
+                } else {
+                    speaker.PlayOneShot(okishSound);
+                }
+            }
         }
 
         if (light.intensity > 0.5) {

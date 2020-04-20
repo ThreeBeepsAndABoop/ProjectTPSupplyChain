@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     public AudioClip BackgroundMusic;
     public AudioClip BackgroundAmbience;
 
+    public AudioClip StatusToolPing;
+
     private AudioSource loudAudioSource;
     private AudioSource musicAudioSource;
 
@@ -201,6 +203,7 @@ public class GameManager : MonoBehaviour
     public void FlashStatusTool(int iterations)
     {
         if (_flashingStatusTool) { return; }
+        loudAudioSource.PlayOneShot(StatusToolPing, 0.5f);
         StartCoroutine(FlashStatusToolEnumerator(iterations));
     }
 
