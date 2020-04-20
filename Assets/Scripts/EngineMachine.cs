@@ -65,7 +65,7 @@ public class EngineMachine : MachineController
                     cmp.Condition -= 0.02;
                 } else
                 {
-                    cmp.Condition -= 0.002;
+                    cmp.Condition -= 0.004;
                 }
 
                 cmp.Condition = Math.Max(cmp.Condition, 0);

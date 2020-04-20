@@ -43,7 +43,7 @@ public class LifeSupportMachine : MachineController
             {
                 if (lowEffMode)
                 {
-                    cmp.Condition -= 0.01;
+                    cmp.Condition -= 0.002;
                 }
                 else
                 {
