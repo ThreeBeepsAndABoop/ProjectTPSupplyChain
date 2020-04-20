@@ -43,11 +43,11 @@ public class LifeSupportMachine : MachineController
             {
                 if (lowEffMode)
                 {
-                    cmp.Condition -= 0.002;
+                    cmp.Condition -= 0.002 * UnityEngine.Random.Range(0f, 1f);
                 }
                 else
                 {
-                    cmp.Condition -= 0.001;
+                    cmp.Condition -= 0.001 * UnityEngine.Random.Range(0f, 1f);
                 }
 
                 cmp.Condition = Math.Max(cmp.Condition, 0);

@@ -53,11 +53,11 @@ public class GeneratorMachine : MachineController
             {
                 if (lowEffMode)
                 {
-                    cmp.Condition -= 0.005;
+                    cmp.Condition -= 0.005 * UnityEngine.Random.Range(0f, 1f);
                 }
                 else
                 {
-                    cmp.Condition -= 0.002;
+                    cmp.Condition -= 0.002 * UnityEngine.Random.Range(0f, 1f);
                 }
 
                 cmp.Condition = Math.Max(cmp.Condition, 0);
