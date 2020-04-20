@@ -85,6 +85,11 @@ MonoBehaviour:
   Condition: 1
   Type: 1
   Slot: {fileID: 0}
+  isBroken: 0
+  particals: {fileID: 5863347260658938958, guid: 74cd41a63ad817a429bf7ca5eb180336,
+    type: 3}
+  brokenMaterial: {fileID: 2100000, guid: 79e430cdc48c7ee4e8a6eeb582e412a9, type: 2}
+  brokenIcon: {fileID: 21300000, guid: f0b2eabaabec18e4ca2b7b5db15c34e1, type: 3}
 --- !u!114 &6359660342696986855
 MonoBehaviour:
   m_ObjectHideFlags: 0
