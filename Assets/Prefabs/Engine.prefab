@@ -1754,9 +1754,9 @@ MonoBehaviour:
   suppliableResources: []
   machineStatus: 0
   requiredTime: 1
-  reactionGlow: {fileID: 0}
-  engineFlapTranslationOne: {fileID: 0}
-  engineFlapTranslationTwo: {fileID: 0}
+  reactionGlow: {fileID: 9039927910776698005}
+  engineFlapTranslationOne: {fileID: 1290025254}
+  engineFlapTranslationTwo: {fileID: 1207375207}
 --- !u!1 &5327529605205729438
 GameObject:
   m_ObjectHideFlags: 0
