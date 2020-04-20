@@ -26,6 +26,16 @@ public class GeneratorMachine : MachineController
         var totalRequestedComponents = 0;
         foreach (var row in componentCounts)
         {
+            if (row.Key == MachineComponentType.Broken)
+            {
+                continue; // Don't count broken components, but it does not make us broken either.
+            }
+
+            if (row.Value.maxCount <= 0)
+            {
+                continue; // Don't count components that happen to be attached, but not required. This is a fix for basically only the example machine.
+            }
+
             if (row.Value.components.Count < row.Value.minCount)
             {
                 return MachineStatus.Broken;
@@ -43,11 +53,11 @@ public class GeneratorMachine : MachineController
             {
                 if (lowEffMode)
                 {
-                    cmp.Condition -= 0.01;
+                    cmp.Condition -= 0.005 * UnityEngine.Random.Range(0f, 1f);
                 }
                 else
                 {
-                    cmp.Condition -= 0.001;
+                    cmp.Condition -= 0.002 * UnityEngine.Random.Range(0f, 1f);
                 }
 
                 cmp.Condition = Math.Max(cmp.Condition, 0);

@@ -62,10 +62,10 @@ public class EngineMachine : MachineController
             {
                 if (lowEffMode)
                 {
-                    cmp.Condition -= 0.02;
+                    cmp.Condition -= 0.02 * UnityEngine.Random.Range(0f, 1f);
                 } else
                 {
-                    cmp.Condition -= 0.002;
+                    cmp.Condition -= 0.004 * UnityEngine.Random.Range(0f, 1f);
                 }
 
                 cmp.Condition = Math.Max(cmp.Condition, 0);
