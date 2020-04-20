@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543668980085432076}
   m_LocalRotation: {x: -0.27059793, y: -0.65328157, z: 0.65328157, w: -0.27059793}
-  m_LocalPosition: {x: -34.95, y: 0, z: 0}
+  m_LocalPosition: {x: -22.45, y: 0, z: 0}
   m_LocalScale: {x: 12.499999, y: 12.499999, z: 1}
   m_Children: []
   m_Father: {fileID: 5150247555700081649}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 6891873809023055438}
   - component: {fileID: 2662116123234473494}
   m_Layer: 0
-  m_Name: Front HallsTop
+  m_Name: Front Halls Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
