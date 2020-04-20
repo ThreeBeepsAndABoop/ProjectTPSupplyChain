@@ -1734,25 +1734,29 @@ MonoBehaviour:
   components: []
   componentRequests:
   - componentType: 0
-    effect: More Energy
-    minCount: 0
-    maxCount: 2
-  - componentType: 1
-    effect: Inc. Speed
+    effect: 
     minCount: 1
     maxCount: 2
+  - componentType: 1
+    effect: 
+    minCount: 0
+    maxCount: 2
+  - componentType: 4
+    effect: 
+    minCount: 1
+    maxCount: 1
+  - componentType: 3
+    effect: 
+    minCount: 1
+    maxCount: 1
   bufferedResources: []
-  requiredResources:
-  - resourceType: 0
-    amount: 1000
-  suppliableResources:
-  - resourceType: 2
-    amount: 100
+  requiredResources: []
+  suppliableResources: []
   machineStatus: 0
   requiredTime: 1
-  reactionGlow: {fileID: 9039927910776698005}
-  engineFlapTranslationOne: {fileID: 1290025254}
-  engineFlapTranslationTwo: {fileID: 1207375207}
+  reactionGlow: {fileID: 0}
+  engineFlapTranslationOne: {fileID: 0}
+  engineFlapTranslationTwo: {fileID: 0}
 --- !u!1 &5327529605205729438
 GameObject:
   m_ObjectHideFlags: 0
