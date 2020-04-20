@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
     public GameObject ComputerPrefab;
     public GameObject CompressorPrefab;
 
-    public bool Debug = true;
+    public bool _DEBUG = false;
+
     public bool PlayBackgroundMusic = true;
     public bool PlayBackgroundAmbience = true;
 
@@ -148,7 +149,7 @@ public class GameManager : MonoBehaviour
     private bool _flashingStatusTool;
     IEnumerator FlashStatusToolEnumerator(int iterations)
     {
-        if (_flashingStatusTool || iterations <= 0) {
+        if (iterations <= 0) {
             yield break;
         }
         // TODO: Genericize
@@ -173,7 +174,7 @@ public class GameManager : MonoBehaviour
         yield return null;
         while (Time.time < endTime)
         {
-            float pct = (1 - (endTime - Time.time)) / (endTime - startTime);
+            float pct = (endTime - Time.time) / (endTime - startTime);
 
             if(pct < 0.5)
             {
@@ -203,8 +204,8 @@ public class GameManager : MonoBehaviour
     public void FlashStatusTool(int iterations)
     {
         if (_flashingStatusTool) { return; }
-        loudAudioSource.PlayOneShot(StatusToolPing, 0.5f);
         StartCoroutine(FlashStatusToolEnumerator(iterations));
+        loudAudioSource.PlayOneShot(StatusToolPing, 0.5f);
     }
 
     IEnumerator FlashScreenEnumerator(float duration)
@@ -227,7 +228,7 @@ public class GameManager : MonoBehaviour
         yield return null;
         while (Time.time < endTime)
         {
-            float pct = (1 - (endTime - Time.time)) / (endTime - startTime);
+            float pct = (endTime - Time.time) / (endTime - startTime);
 
             if (pct < 0.5)
             {
@@ -269,9 +270,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator FadeTextInEnumeratorAndFadeOut(Text text, float duration, float fadeOutAfter)
+    IEnumerator FadeTextInAndFadeOutAfterDelayEnumerator(Text text, float delay, float duration, float fadeOutAfter)
     {
-        StartCoroutine(FadeTextInEnumerator(text, duration));
+        float waitDuration = delay;
+        float startTime = Time.time;
+        float endTime = startTime + waitDuration;
+
+        yield return null;
+        while (Time.time < endTime)
+        {
+            yield return null;
+        }
+
+        StartCoroutine(FadeTextInAndFadeOutEnumerator(text, duration, fadeOutAfter));
+    }
+
+    IEnumerator FadeTextInAndFadeOutEnumerator(Text text, float duration, float fadeOutAfter)
+    {
+        FadeTextIn(text, duration);
 
         float waitDuration = fadeOutAfter;
         float startTime = Time.time;
@@ -283,12 +299,17 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        StartCoroutine(FadeTextOutEnumerator(text, duration));
+        FadeTextOut(text, duration);
     }
 
     public void FadeTextInAndOut(Text text, float durationToFade, float fadeOutAfter)
     {
-        StartCoroutine(FadeTextInEnumeratorAndFadeOut(text, durationToFade, fadeOutAfter));
+        StartCoroutine(FadeTextInAndFadeOutEnumerator(text, durationToFade, fadeOutAfter));
+    }
+
+    public void FadeTextInAndOutAfterDelay(Text text, float delay, float durationToFade, float fadeOutAfter)
+    {
+        StartCoroutine(FadeTextInAndFadeOutAfterDelayEnumerator(text, delay, durationToFade, fadeOutAfter));
     }
 
     IEnumerator FadeTextOutEnumerator(Text text, float duration)

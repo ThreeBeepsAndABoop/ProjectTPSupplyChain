@@ -26,7 +26,7 @@ public class SunExpansion : MonoBehaviour
     void Start()
     {
         _light = transform.Find("Light").GetComponent<Light>();
-        _screenFlash = GameObject.Find("SCREEN_FLASH").GetComponent<Image>();
+        _screenFlash = GameObject.Find("GAME_OVER_FADE_OUT").GetComponent<Image>();
     }
 
     bool _explosionBegun = false;

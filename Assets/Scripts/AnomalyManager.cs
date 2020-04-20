@@ -157,7 +157,7 @@ public class AnomalyManager : MonoBehaviour
     void TriggerAnomalyUIWarning(AnomalyType anomaly)
     {
         // TODO - play sound?
-        GameManager.Instance.FlashScreen();
+        GameManager.Instance.FlashScreen(1f);
         string alertText = null;
         switch (anomaly)
         {
@@ -168,7 +168,7 @@ public class AnomalyManager : MonoBehaviour
                 alertText = "An electrical discharge has occured! Some of our electric components (compressors, motors, and computers) have sustained mild damage.";
                 break;
             case AnomalyType.SolarFlare:
-                alertText = "The dying sun has put out an intense solar flare! Many of our electric components (compressors, motors, and computers) have been severely damaged.";
+                alertText = "The dying star has put out an intense solar flare! Many of our electric components (compressors, motors, and computers) have been severely damaged.";
                 break;
             default:
                 alertText = "";
@@ -178,6 +178,6 @@ public class AnomalyManager : MonoBehaviour
         GameObject go = GameObject.Find("ANOMALY_TEXT");
         Text anomalyOnScreenText = go.GetComponent<Text>();
         anomalyOnScreenText.text = alertText;
-        GameManager.Instance.FadeTextInAndOut(anomalyOnScreenText, 0.25f, 5.0f);
+        GameManager.Instance.FadeTextInAndOutAfterDelay(anomalyOnScreenText, 0.5f, 0.25f, 5.0f);
     }
 }
