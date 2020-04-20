@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
     public AnimationCurve itemsPerBoxCurve = AnimationCurve.EaseInOut(0, 0, 1, 12);
 
     [HideInInspector]
+    public bool IsGameOver { get; private set; }
+
+    [HideInInspector]
     public GrabIt GrabIt;
 
     private TextMeshProUGUI _timeLeftLabel;
@@ -165,7 +168,7 @@ public class GameManager : MonoBehaviour
         yield return null;
         while (Time.time < endTime)
         {
-            float pct = (endTime - Time.time) / (endTime - startTime);
+            float pct = (1 - (endTime - Time.time)) / (endTime - startTime);
 
             if(pct < 0.5)
             {
@@ -196,6 +199,85 @@ public class GameManager : MonoBehaviour
     {
         if (_flashingStatusTool) { return; }
         StartCoroutine(FlashStatusToolEnumerator(iterations));
+    }
+
+    IEnumerator FadeTextInEnumerator(Text text, float duration)
+    {
+        float startTime = Time.time;
+        float endTime = startTime + duration;
+
+        Color startColor = text.color;
+        text.color = Color.clear;
+        text.enabled = true;
+        yield return null;
+        while (Time.time < endTime)
+        {
+            float pct = (1 - (endTime - Time.time)) / (endTime - startTime);
+            text.color = Color.Lerp(Color.clear, startColor, pct);
+
+            yield return null;
+        }
+    }
+
+    IEnumerator FadeTextOutEnumerator(Text text, float duration)
+    {
+        float startTime = Time.time;
+        float endTime = startTime + duration;
+
+        Color startColor = text.color;
+        text.color = Color.clear;
+        yield return null;
+        while (Time.time < endTime)
+        {
+            float pct = (1 - (endTime - Time.time)) / (endTime - startTime);
+            text.color = Color.Lerp(startColor, Color.clear, pct);
+
+            yield return null;
+        }
+
+        text.color = startColor;
+        text.enabled = false;
+    }
+
+    public void FadeTextIn(Text text, float duration)
+    {
+        StartCoroutine(FadeTextInEnumerator(text, duration));
+    }
+
+    public void FadeTextOut(Text text, float duration)
+    {
+        StartCoroutine(FadeTextOutEnumerator(text, duration));
+    }
+
+    void DisplayFailure1()
+    {
+
+        GameObject failureTextGO = GameObject.Find("FAILURE_TEXT_1");
+        Text failureText = failureTextGO.GetComponent<Text>();
+        FadeTextIn(failureText, 1.0f);
+    }
+
+    void DisplayFailure2()
+    {
+
+        GameObject failureTextGO = GameObject.Find("FAILURE_TEXT_2");
+        Text failureText = failureTextGO.GetComponent<Text>();
+        FadeTextIn(failureText, 1.0f);
+    }
+
+    void DisplayFailure3()
+    {
+
+        GameObject failureTextGO = GameObject.Find("FAILURE_TEXT_3");
+        Text failureText = failureTextGO.GetComponent<Text>();
+        FadeTextIn(failureText, 1.0f);
+    }
+
+    void DisplayFailureMessage()
+    {
+        Invoke("DisplayFailure1", 1.5f);
+        Invoke("DisplayFailure2", 5.0f);
+        Invoke("DisplayFailure3", 7.5f);
     }
 
     // Start is called before the first frame update
@@ -229,15 +311,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private bool gameOverComplete;
     // Update is called once per frame
     void Update()
     {
         timeleft -= Time.deltaTime;
 
-        if (timeleft <= 0 && !gameOverComplete)
+        if (timeleft <= 0 && !IsGameOver)
         {
-            gameOverComplete = true;
+            IsGameOver = true;
+
+            DisplayFailureMessage();
         } else if(timeleft > 0)
         {
             TimeSpan t = TimeSpan.FromSeconds(timeleft);

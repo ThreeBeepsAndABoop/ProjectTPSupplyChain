@@ -79,6 +79,8 @@ public class PlayerInput : MonoBehaviour
 
     private void handleGameInteraction()
     {
+        if(GameManager.Instance.IsGameOver) { return; }
+
         if (!m_statusToolCamInteraction.isOpen)
         {
             handleInventoryInteraction();
