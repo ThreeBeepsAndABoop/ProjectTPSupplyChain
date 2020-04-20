@@ -47,15 +47,25 @@ public class SensorStatusIndicator : MonoBehaviour
         {
             case SensorType.Supernova:
                 sensorStatusTMP.text = GameManager.Instance.GameCompletionString();
-                statusNameTMP.text = "CRITICAL ALERT - SUPERNOVA EXPLOSION";
-                current = Math.Min(GameManager.Instance.GameCompletionPercentage(), 1);
+                statusNameTMP.text = "CRITICAL ALERT - SUPERNOVA IMMINENT";
+                current = GameManager.Instance.GameCompletionPercentage();
                 color = new Color(1f, 0f, 0f);
                 break;
             case SensorType.Anomaly:
-                sensorStatusTMP.text = "???";
-                statusNameTMP.text = "ANOMALY DETECTED - INCOMING SOLAR FLARE";
-                color = new Color(1f, 1f, 0f);
-                current = 0;
+
+                if (GameManager.Instance.AnomalyManager.NextAnomaly == AnomalyType.None)
+                {
+                    sensorStatusTMP.text = "";
+                    statusNameTMP.text = "No anomalous activity detected";
+                    color = new Color(0f, 1f, 0f);
+                    current = 1;
+                } else
+                {
+                    current = GameManager.Instance.AnomalyManager.NextAnomalyProgress;
+                    sensorStatusTMP.text = GameManager.Instance.AnomalyManager.NextAnomalyTimerString();
+                    statusNameTMP.text = "ANOMALY DETECTED - INCOMING " + GameManager.Instance.AnomalyManager.NextAnomaly.displayString();
+                    color = new Color(1f, 1f, 0f);
+                }
                 break;
             default:
                 color = new Color(0f, 1f, 0f);

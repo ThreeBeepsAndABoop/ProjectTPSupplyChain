@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 using Lightbug.GrabIt;
 using TMPro;
 
@@ -18,6 +19,9 @@ public class GameManager : MonoBehaviour
     public PlayerInventory PlayerInventory;
 
     public ResourceManager ResourceManager;
+
+    [HideInInspector]
+    public AnomalyManager AnomalyManager;
 
     public GameObject BatteryPrefab;
     public GameObject CoolantPrefab;
@@ -133,6 +137,67 @@ public class GameManager : MonoBehaviour
         Destroy(source);
     }
 
+    private bool _flashingStatusTool;
+    IEnumerator FlashStatusToolEnumerator(int iterations)
+    {
+        if (_flashingStatusTool || iterations <= 0) {
+            yield break;
+        }
+        // TODO: Genericize
+        GameObject toolBoxWindowGO = GameObject.Find("TOOL_BOX_WINDOW");
+        GameObject toolBoxGO = GameObject.Find("TOOL_BOX");
+
+        if(!toolBoxGO || ! toolBoxWindowGO)
+        {
+            yield break;
+        }
+
+        Image toolBoxWindow = toolBoxWindowGO.GetComponent<Image>();
+        Image toolBox = toolBoxWindowGO.GetComponent<Image>();
+
+        Color toolBoxWindowColorStart = toolBoxWindow.color;
+        Color toolBoxColorStart = toolBox.color;
+
+        const float duration = 0.25f;
+        float startTime = Time.time;
+        float endTime = startTime + duration;
+
+        yield return null;
+        while (Time.time < endTime)
+        {
+            float pct = (endTime - Time.time) / (endTime - startTime);
+
+            if(pct < 0.5)
+            {
+                pct *= 2;
+                toolBoxWindow.color = Color.Lerp(toolBoxWindowColorStart, Color.white, pct);
+                toolBox.color = Color.Lerp(toolBoxColorStart, Color.white, pct);
+            } else
+            {
+                pct = (pct - .5f) * 2f;
+                toolBoxWindow.color = Color.Lerp(Color.white, toolBoxWindowColorStart, pct);
+                toolBox.color = Color.Lerp(Color.white, toolBoxColorStart, pct);
+            }
+
+            yield return null;
+        }
+
+        toolBoxWindow.color = toolBoxWindowColorStart;
+        toolBox.color = toolBoxColorStart;
+        _flashingStatusTool = false;
+
+        if (iterations > 0)
+        {
+            StartCoroutine(FlashStatusToolEnumerator(iterations - 1));
+        }
+    }
+
+    public void FlashStatusTool(int iterations)
+    {
+        if (_flashingStatusTool) { return; }
+        StartCoroutine(FlashStatusToolEnumerator(iterations));
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -140,6 +205,8 @@ public class GameManager : MonoBehaviour
         Player = GameObject.Find("Player").gameObject;
         PlayerInventory = Player.GetComponent<PlayerInventory>();
         timeleft = totalGameTime;
+
+        AnomalyManager = GetComponent<AnomalyManager>();
 
         GameObject firstPersonCharacter = Player.transform.Find("FirstPersonCharacter").gameObject;
         GrabIt = firstPersonCharacter.GetComponent<GrabIt>();

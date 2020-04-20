@@ -27,6 +27,10 @@ public class PlayerInput : MonoBehaviour
 
     private void handleInventoryInteraction()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             GameManager.Instance.RequestPlayTickSound();
