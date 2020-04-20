@@ -1952,11 +1952,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 7924747293433797411, guid: 78a4e6169956e4ec2a4c45234333a528,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.36
-      objectReference: {fileID: 0}
     - target: {fileID: 8003337972529150472, guid: 78a4e6169956e4ec2a4c45234333a528,
         type: 3}
       propertyPath: m_Mesh
@@ -2121,11 +2116,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8842083086393459767, guid: 78a4e6169956e4ec2a4c45234333a528,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 9.12
       objectReference: {fileID: 0}
     - target: {fileID: 8850630013373145020, guid: 78a4e6169956e4ec2a4c45234333a528,
         type: 3}
