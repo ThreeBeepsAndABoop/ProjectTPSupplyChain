@@ -53,7 +53,6 @@ public class MachineComponent : MonoBehaviour
 
     public GameObject particals;
     public Material brokenMaterial;
-    public Sprite brokenIcon;
 
     // Start is called before the first frame update
     void Start()
@@ -69,10 +68,11 @@ public class MachineComponent : MonoBehaviour
             isBroken = true;
             Condition = 0;
             Type = MachineComponentType.Broken;
-            Instantiate(particals, transform);
+            GameObject particles = Instantiate(particals, transform);
+            particles.name = "Particles";
+
 
             GetComponent<Grabbable>().name = Type.machineComponentName();
-            GetComponent<Grabbable>().icon = brokenIcon;
 
             if (GetComponent<Renderer>() != null)
             {

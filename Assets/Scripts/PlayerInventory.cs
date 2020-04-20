@@ -79,6 +79,12 @@ public class PlayerInventory : MonoBehaviour
             return true;
         }
 
+        Transform particles = newlySelectedItem.transform.Find("Particles");
+        if (particles)
+        {
+            particles.gameObject.SetActive(true);
+        }
+
         _selectedItemText.text = newlySelectedItem.name;
         _quitPanelGO.GetComponent<RectTransform>().anchoredPosition = new Vector3(15 + 90 * index, 30, 0);// fucking amazing.
         _quitPanelGO.SetActive(true);
@@ -119,6 +125,12 @@ public class PlayerInventory : MonoBehaviour
         if (selectedItem == null)
         {
             return false;
+        }
+
+        Transform particles = selectedItem.transform.Find("Particles");
+        if (particles)
+        {
+            particles.gameObject.SetActive(false);
         }
 
         _selectedItemText.text = "";
@@ -191,7 +203,23 @@ public class PlayerInventory : MonoBehaviour
         SelectItem(firstFreeIndex);
 
         _inventorySlots[firstFreeIndex].enabled = true;
+
+        MachineComponent machineComponent = grabbable.GetComponent<MachineComponent>();
+        if (machineComponent)
+        {
+            if (machineComponent.isBroken)
+            {
+                _inventorySlots[firstFreeIndex].color = new Color(45/255.0f, 45/255.0f, 45/255.0f, 125/255.0f);
+                Debug.Log("BROKEN " + _inventorySlots[firstFreeIndex] + " color = " + _inventorySlots[firstFreeIndex].color);
+            }
+            else
+            {
+                _inventorySlots[firstFreeIndex].color = Color.white;
+            }
+        }
         _inventorySlots[firstFreeIndex].sprite = grabbable.icon;
+
+
 
         Count += 1;
 
@@ -227,6 +255,12 @@ public class PlayerInventory : MonoBehaviour
             {
                 rb.isKinematic = false;
                 rb.detectCollisions = true;
+            }
+
+            Transform particles = grabbable.transform.Find("Particles");
+            if(particles)
+            {
+                particles.gameObject.SetActive(true);
             }
 
             foreach (Transform trans in grabbable.transform.GetComponentsInChildren<Transform>(true))
