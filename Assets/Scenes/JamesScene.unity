@@ -2077,6 +2077,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4194757746040507902, guid: 5e9e851c0e142814dac026a256ba2ac0,
+        type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 2054973519}
     - target: {fileID: 4203818416659451090, guid: 5e9e851c0e142814dac026a256ba2ac0,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -3722,6 +3727,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23fd2f91c4f4d704898b0acf664461cb, type: 3}
+--- !u!1 &2054973519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4287457349874970761, guid: 8bace0205f32e4003ba3e2c1e7733d25,
+    type: 3}
+  m_PrefabInstance: {fileID: 4287457348426078406}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2140608775199532852
 PrefabInstance:
   m_ObjectHideFlags: 0
