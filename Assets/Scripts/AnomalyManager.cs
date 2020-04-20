@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum AnomalyType
 {
@@ -98,6 +99,7 @@ public class AnomalyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.IsGameOver) { return; }
         UpdateCurrentAnomaly();
     }
 
@@ -148,7 +150,34 @@ public class AnomalyManager : MonoBehaviour
                 return;
         }
 
-
+        TriggerAnomalyUIWarning(anomaly);
         GameManager.Instance.MachineComponentManager.InflictDamageToAllComponentsOfTypes(hs, damageToInflict, percentOfComponentsToDamage);
+    }
+
+    void TriggerAnomalyUIWarning(AnomalyType anomaly)
+    {
+        // TODO - play sound?
+        GameManager.Instance.FlashScreen();
+        string alertText = null;
+        switch (anomaly)
+        {
+            case AnomalyType.Asteroid:
+                alertText = "An asteroid has struck the ship! Some of our components have sustained damage.";
+                break;
+            case AnomalyType.ElectricalDischarge:
+                alertText = "An electrical discharge has occured! Some of our electric components (compressors, motors, and computers) have sustained mild damage.";
+                break;
+            case AnomalyType.SolarFlare:
+                alertText = "The dying sun has put out an intense solar flare! Many of our electric components (compressors, motors, and computers) have been severely damaged.";
+                break;
+            default:
+                alertText = "";
+                return;
+        }
+
+        GameObject go = GameObject.Find("ANOMALY_TEXT");
+        Text anomalyOnScreenText = go.GetComponent<Text>();
+        anomalyOnScreenText.text = alertText;
+        GameManager.Instance.FadeTextInAndOut(anomalyOnScreenText, 0.25f, 5.0f);
     }
 }
