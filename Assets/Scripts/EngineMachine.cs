@@ -9,6 +9,8 @@ public class EngineMachine : MachineController
     public LinearTranslation engineFlapTranslationOne;
     public LinearTranslation engineFlapTranslationTwo;
 
+    public AudioSource audioSource;
+
 
     private StatusPoleLightColor _previousStatus;
 
@@ -33,6 +35,7 @@ public class EngineMachine : MachineController
             reactionGlow.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
             engineFlapTranslationOne.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
             engineFlapTranslationTwo.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
+            audioSource.enabled = statusPole.statusColor != StatusPoleLightColor.Error;
         }
     }
 
