@@ -86,6 +86,11 @@ public class PlayerInventory : MonoBehaviour
         }
 
         _selectedItemText.text = newlySelectedItem.name;
+        if(newlySelectedItem.GetComponent<MachineComponent>())
+        {
+            var mc = newlySelectedItem.GetComponent<MachineComponent>();
+            _selectedItemText.text += " - " + (mc.Condition * 100).ToString("0.##\\%");
+        }
         _quitPanelGO.GetComponent<RectTransform>().anchoredPosition = new Vector3(15 + 90 * index, 30, 0);// fucking amazing.
         _quitPanelGO.SetActive(true);
 
@@ -290,7 +295,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GameObject player = GameManager.Instance.Player;
         _itemSocketTransform = player.transform.Find("FirstPersonCharacter/ItemSocket");

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27cd549b40890a64f981cbaea1ad544a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machineName: Passive Ship Drain -- FTL
+  machineName: Passive Ship Drain -- FTL Charge Quantum Discharge Ablinators
   terminal: {fileID: 3016200009188210597}
   statusPole: {fileID: 1789996381100580541}
   components: []
@@ -53,7 +53,7 @@ MonoBehaviour:
   bufferedResources: []
   requiredResources:
   - resourceType: 2
-    amount: 100
+    amount: 750
   suppliableResources: []
   machineStatus: 0
   requiredTime: 1

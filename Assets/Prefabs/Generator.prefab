@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1426b54b1a2eacd409b804fb887e52ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machineName: Generatror
+  machineName: Generator
   terminal: {fileID: 8480488831851348032}
   statusPole: {fileID: 8222576799513864788}
   components: []
@@ -11285,7 +11285,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0.1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 17.5
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -11295,8 +11295,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.10128784
-      value: 1
+      time: 0.106414795
+      value: 0.8015976
       inSlope: -3.0641046
       outSlope: -3.0641046
       tangentMode: 0

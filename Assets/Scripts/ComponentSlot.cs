@@ -5,10 +5,18 @@ using UnityEngine;
 public class ComponentSlot : MonoBehaviour
 {
     public MachineComponentType AcceptedType;
+
+    [Header("Starting Component")]
     public bool StartFilled;
+    public float StartingDamage = 0.5f;
+    [Range(0, 2)]
+    public float StartingDamageLowMultiplier = 0.85f;
+    [Range(0, 2)]
+    public float StartingDamageHighMultiplier = 1.15f;
 
     [HideInInspector]
     public MachineController Machine;
+
 
     private Transform _componentTransform;
     private MachineComponent _heldComponent;
@@ -46,7 +54,9 @@ public class ComponentSlot : MonoBehaviour
             if (prefab != null)
             {
                 GameObject go = Instantiate(prefab);
-                AcceptComponent(go.GetComponent<MachineComponent>());
+                MachineComponent mc = go.GetComponent<MachineComponent>();
+                mc.DamageCondition(StartingDamage * Random.Range(StartingDamageLowMultiplier, StartingDamageHighMultiplier));
+                AcceptComponent(mc);
             }
         }
     }

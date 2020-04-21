@@ -53,7 +53,7 @@ MonoBehaviour:
   bufferedResources: []
   requiredResources:
   - resourceType: 1
-    amount: 50
+    amount: 1000
   suppliableResources: []
   machineStatus: 0
   requiredTime: 1

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -79,7 +80,15 @@ public class PlayerInput : MonoBehaviour
 
     private void handleGameInteraction()
     {
-        if(GameManager.Instance.IsGameOver) { return; }
+        if(GameManager.Instance.IsGameOver) {
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+            }
+
+            return;
+        }
 
         if (!m_statusToolCamInteraction.isOpen)
         {
@@ -94,6 +103,11 @@ public class PlayerInput : MonoBehaviour
             if (grabbable != null)
             {
                 m_crosshairText.text = grabbable.name;
+                if (grabbable.GetComponent<MachineComponent>())
+                {
+                    var mc = grabbable.GetComponent<MachineComponent>();
+                    m_crosshairText.text += " - " + (mc.Condition * 100).ToString("0.##\\%");
+                }
             }
         }
 

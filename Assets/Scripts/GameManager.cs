@@ -5,7 +5,15 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using Lightbug.GrabIt;
+using UnityStandardAssets.Characters.FirstPerson;
 using TMPro;
+
+public enum LossReason
+{
+    None,
+    Supernova,
+    LifeSupport
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -53,13 +61,16 @@ public class GameManager : MonoBehaviour
     private AudioSource loudAudioSource;
     private AudioSource musicAudioSource;
 
+    [HideInInspector]
+    public LossReason LossReason = LossReason.None;
+
     public float totalGameTime = 5 * 60;
     public float timeleft = 5 * 60f;
 
     public AnimationCurve itemsPerBoxCurve = AnimationCurve.EaseInOut(0, 0, 1, 12);
 
     [HideInInspector]
-    public bool IsGameOver { get; private set; }
+    public bool IsGameOver { get { return IsGameWon || IsGameLost; } }
 
     [HideInInspector]
     public GrabIt GrabIt;
@@ -254,6 +265,42 @@ public class GameManager : MonoBehaviour
         loudAudioSource.PlayOneShot(StatusToolPingLong, 0.5f);
     }
 
+    IEnumerator FadeInScreenEnumerator(float duration)
+    {
+        // TODO: Genericize
+        GameObject screenFlashGO = GameObject.Find("SCREEN_FLASH");
+
+        if (!screenFlashGO)
+        {
+            yield break;
+        }
+
+        Image screenFlash = screenFlashGO.GetComponent<Image>();
+
+        Color screenFlashColorStart = screenFlash.color;
+
+        float startTime = Time.time;
+        float endTime = startTime + duration;
+
+        yield return null;
+        while (Time.time < endTime)
+        {
+            float pct = (endTime - Time.time) / (endTime - startTime);
+
+            screenFlash.color = Color.Lerp(Color.white, screenFlashColorStart, pct);
+
+            yield return null;
+        }
+
+        screenFlash.color = Color.white;
+    }
+
+    public void FadeInScreen(float duration = 1.2f)
+    {
+        StartCoroutine(FadeInScreenEnumerator(duration));
+        loudAudioSource.PlayOneShot(StatusToolPingLong, 0.5f);
+    }
+
     IEnumerator FadeTextInEnumerator(Text text, float duration)
     {
         float startTime = Time.time;
@@ -349,6 +396,17 @@ public class GameManager : MonoBehaviour
 
         GameObject failureTextGO = GameObject.Find("FAILURE_TEXT_1");
         Text failureText = failureTextGO.GetComponent<Text>();
+        if(IsGameWon)
+        {
+            failureText.text = "With " + GameCompletionString() + " remaining,\nyour heroic efforts to start the FTL jump drive\nwere a success.";
+        }
+        else
+        {
+            if (LossReason == LossReason.LifeSupport)
+            {
+                failureText.text = "Despite your best efforts,\n the life support system failed.\n\nThough you could not keep the Starship Ludum alive\nand start the FTL Jump Drive, the warning signal your ship sent will be heard throughout the galaxy.";
+            }
+        }
         FadeTextIn(failureText, 1.0f);
     }
 
@@ -357,6 +415,10 @@ public class GameManager : MonoBehaviour
 
         GameObject failureTextGO = GameObject.Find("FAILURE_TEXT_2");
         Text failureText = failureTextGO.GetComponent<Text>();
+        if (IsGameWon)
+        {
+            failureText.text = "Your spacefaring expertise has kept\n the Starship Ludum, and yourself, alive.";
+        }
         FadeTextIn(failureText, 1.0f);
     }
 
@@ -368,11 +430,11 @@ public class GameManager : MonoBehaviour
         FadeTextIn(failureText, 1.0f);
     }
 
-    void DisplayFailureMessage()
+    void DisplayGameOverMessage()
     {
         Invoke("DisplayFailure1", 1.5f);
-        Invoke("DisplayFailure2", 10.0f);
-        Invoke("DisplayFailure3", 15.0f);
+        Invoke("DisplayFailure2", 6.0f);
+        Invoke("DisplayFailure3", 10.0f);
     }
 
     // Start is called before the first frame update
@@ -406,20 +468,72 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        GameObject coolant = Instantiate(CoolantPrefab);
+        PlayerInventory.PickUp(coolant.GetComponent<Grabbable>());
+
+        Debug.Log("DisplayHintText");
+        GameObject go = GameObject.Find("PLAYER_HINT_TEXT");
+        Text hintText = go.GetComponent<Text>();
+        FadeTextInAndOut(hintText, 1, 10);
+    }
+
+    public bool IsGameWon { get; private set; }
+    public bool IsGameLost { get; private set; }
+
+    void GameLost()
+    {
+        if (IsGameOver) { return; }
+
+        IsGameLost = true;
+        DisplayGameOverMessage();
+        Player.GetComponent<FirstPersonController>().enabled = false;
+    }
+
+    void GameWon()
+    {
+        if(IsGameOver) { return; }
+
+        IsGameWon = true;
+        FadeInScreen();
+        DisplayGameOverMessage();
+        Player.GetComponent<FirstPersonController>().enabled = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
         timeleft -= Time.deltaTime;
 
-        if (timeleft <= 0 && !IsGameOver)
+        if(IsGameOver)
         {
-            IsGameOver = true;
+            return;
+        }
 
-            DisplayFailureMessage();
-        } else if(timeleft > 0)
+        if (timeleft <= 0)
+        {
+            LossReason = LossReason.Supernova;
+            GameLost();
+        }
+        else if(timeleft > 0)
         {
             TimeSpan t = TimeSpan.FromSeconds(timeleft);
             string timeStr = t.ToString(@"hm\:ss\:fff");
+
+            var r = ResourceManager.ResourceForType(ResourceType.FTLJumpDriveCharge);
+            if (r.currentAmount >= r.requiredAmount)
+            {
+                GameWon();
+            }
+
+            r = ResourceManager.ResourceForType(ResourceType.LifeSupport);
+            if (r.currentAmount < r.requiredAmount)
+            {
+                LossReason = LossReason.LifeSupport;
+                FadeInScreen();
+                GameLost();
+            }
         }
     }
 }

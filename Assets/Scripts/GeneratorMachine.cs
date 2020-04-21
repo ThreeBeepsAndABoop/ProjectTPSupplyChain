@@ -84,7 +84,7 @@ public class GeneratorMachine : MachineController
         var coolent     = componentCounts[MachineComponentType.Coolant].Percent();
         var motors      = componentCounts[MachineComponentType.Motor].Percent();
         var computer  = componentCounts[MachineComponentType.Computer].Percent();
-        var eff = (coolent * 4000) + (motors * 4000) + (computer * 1000) + 1000;
+        var eff = (coolent * 5000) + (motors * 4000) + (computer * 2000) + 1000;
 
         // Generators Use Nothing.
         requiredResources.Clear();

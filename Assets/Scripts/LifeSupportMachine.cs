@@ -82,11 +82,11 @@ public class LifeSupportMachine : MachineController
 
 
         // Determine what we need
-        var batt = (componentCounts[MachineComponentType.Battery].Percent() - 0.5) *2;
+        var motor = (componentCounts[MachineComponentType.Motor].Percent() - 0.5) *2;
         var comp = (componentCounts[MachineComponentType.Compressor].Percent() - 0.5) * 2;
-        var eff = 1900 * (1 - (batt * 0.8) - (comp * 0.2)) + 100;
+        var eff = 1900 * (1 - (motor * 0.8) - (comp * 0.2)) + 100;
 
-        // Depending on Batteries (1-2) and Compressors (1-2) uses more or less power. 100 full eff, 2000 lowest eff.
+        // Depending on motors (1-2) and Compressors (1-2) uses more or less power. 100 full eff, 2000 lowest eff.
         requiredResources.Clear();
         requiredResources.Add(new ResourceRequest(ResourceType.BatteryStorage, (int)Math.Round(eff)));
 
