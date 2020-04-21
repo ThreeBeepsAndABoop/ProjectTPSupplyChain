@@ -46,7 +46,6 @@ public class ResourceManager : MonoBehaviour
     private const int maximumRunningValuesToTrack = (int)(5.0 / updateRate) + 1; // seconds / update rate
     void Update()
     {
-        Debug.Log("maximumRunningValuesToTrack = " + maximumRunningValuesToTrack);
         updateTimer -= Time.deltaTime;
         if(updateTimer < 0)
         {

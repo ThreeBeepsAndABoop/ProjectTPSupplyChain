@@ -74,7 +74,7 @@ public class SystemStatusIndicator : MonoBehaviour
         systemStatusTMP.color = color;
 
         TextMeshProUGUI systemNameTMP = systemNameText.GetComponent<TextMeshProUGUI>();
-        systemNameTMP.text = res.name;
+        systemNameTMP.text = res.name + " [" + res.currentAmount + "/" + res.maxAmount + "]";
         systemNameTMP.color = color;
 
         TextMeshProUGUI systemProgressTMP = systemProgressText.GetComponent<TextMeshProUGUI>();
