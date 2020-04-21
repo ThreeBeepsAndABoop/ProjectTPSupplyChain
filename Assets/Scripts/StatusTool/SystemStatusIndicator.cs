@@ -57,19 +57,19 @@ public class SystemStatusIndicator : MonoBehaviour
         Color color;
         if (current < lowWatermark)
         {
-            statusQualitative = "FAILURE";
             color = new Color(1f, 0.25f, 0.25f);
         }
         else if (lowWatermark < 0.90 && current - 0.1 < lowWatermark)
         {
-            statusQualitative = "Warning";
             color = new Color(1f, 1f, 0f);
         }
         else
         {
-            statusQualitative = "Good";
             color = new Color(0f, 1f, 0f);
         }
+
+        statusQualitative = string.Format("{0:+#;-#;0;0.00}", GameManager.Instance.ResourceManager.RunningAverageForResource(res)) + "/s";
+
         systemStatusTMP.text = statusQualitative + " - " + statusPercent;
         systemStatusTMP.color = color;
 
