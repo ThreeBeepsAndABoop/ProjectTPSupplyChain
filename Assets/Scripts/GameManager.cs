@@ -468,10 +468,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void GivePlayerStartingItems()
     {
         GameObject coolant = Instantiate(CoolantPrefab);
         PlayerInventory.PickUp(coolant.GetComponent<Grabbable>());
+    }
+
+    private void Start()
+    {
+        Invoke("GivePlayerStartingItems", 0.25f);
 
         Debug.Log("DisplayHintText");
         GameObject go = GameObject.Find("PLAYER_HINT_TEXT");

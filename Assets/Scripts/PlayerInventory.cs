@@ -295,7 +295,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         GameObject player = GameManager.Instance.Player;
         _itemSocketTransform = player.transform.Find("FirstPersonCharacter/ItemSocket");
