@@ -934,15 +934,15 @@ MonoBehaviour:
   components: []
   componentRequests:
   - componentType: 1
-    effect: 
+    effect: v Chamber Temp.
     minCount: 1
     maxCount: 2
   - componentType: 2
-    effect: 
+    effect: ^ Pump Speed
     minCount: 1
     maxCount: 2
   - componentType: 3
-    effect: 
+    effect: ^ Quantum Ctl.
     minCount: 0
     maxCount: 2
   bufferedResources: []
@@ -12295,6 +12295,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef44a17e2075fd443a383fa6d0c9ea7a, type: 3}
+--- !u!4 &9209806003572674384 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5729293888339097792, guid: ef44a17e2075fd443a383fa6d0c9ea7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3480516891245623184}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8480488831851348032 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5043459858911459280, guid: ef44a17e2075fd443a383fa6d0c9ea7a,
@@ -12307,12 +12313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd061b696cd21b488600e88fe25b8c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &9209806003572674384 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5729293888339097792, guid: ef44a17e2075fd443a383fa6d0c9ea7a,
-    type: 3}
-  m_PrefabInstance: {fileID: 3480516891245623184}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5987015836729914186
 PrefabInstance:
   m_ObjectHideFlags: 0

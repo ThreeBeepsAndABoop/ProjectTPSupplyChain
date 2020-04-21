@@ -55,15 +55,15 @@ MonoBehaviour:
   components: []
   componentRequests:
   - componentType: 0
-    effect: 
+    effect: '- Required'
     minCount: 1
     maxCount: 1
   - componentType: 4
-    effect: 
+    effect: ^ O2 Gen. Speed
     minCount: 1
     maxCount: 2
   - componentType: 2
-    effect: 
+    effect: ^ Air Flow
     minCount: 0
     maxCount: 2
   bufferedResources: []

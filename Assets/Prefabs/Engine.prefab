@@ -1862,19 +1862,19 @@ MonoBehaviour:
   components: []
   componentRequests:
   - componentType: 0
-    effect: 
+    effect: ^ Charge Speed
     minCount: 1
     maxCount: 2
   - componentType: 1
-    effect: 
+    effect: '^ Efficiency '
     minCount: 0
     maxCount: 2
   - componentType: 4
-    effect: 
+    effect: '- Required'
     minCount: 1
     maxCount: 1
   - componentType: 3
-    effect: 
+    effect: '- Required'
     minCount: 1
     maxCount: 1
   bufferedResources: []
