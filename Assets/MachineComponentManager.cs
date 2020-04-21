@@ -39,10 +39,12 @@ public class MachineComponentManager : MonoBehaviour
         InflictDamageToAllComponentsOfTypes(hs, conditionDamage, percentageOfComponents);
     }
 
-    public void InflictDamageToAllComponentsOfTypes(HashSet<MachineComponentType> types, float conditionDamage, float percentageOfComponents)
+    public void InflictDamageToAllComponentsOfTypes(HashSet<MachineComponentType> types, float conditionDamage,
+        float percentageOfComponents, bool targetComponentsInMachinesOnly = true)
     {
         IEnumerable<MachineComponent> filteredComponents = from component in MachineComponents
                                                            where types.Contains(component.Type)
+                                                           where component.Slot != null
                                                            select component;
 
         foreach (MachineComponent c in filteredComponents)

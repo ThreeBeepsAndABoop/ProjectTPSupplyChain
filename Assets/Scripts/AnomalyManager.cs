@@ -83,6 +83,7 @@ public class AnomalyManager : MonoBehaviour
 
     private void ConfigureNextAnomaly()
     {
+        if (GameManager.Instance.timeleft < 15.0f) { return; }
         var rnd = new System.Random();
         while(CurrentAnomaly == AnomalyType.None)
         {
@@ -106,6 +107,7 @@ public class AnomalyManager : MonoBehaviour
     void UpdateCurrentAnomaly()
     {
         if (CurrentAnomaly == AnomalyType.None) { return; }
+        if (GameManager.Instance.timeleft < 15.0f) { _currentAnomalyStartCountdown = 100000000; return; }
 
         _currentAnomalyCurrentElapsedDuration += Time.deltaTime;
 
@@ -162,13 +164,13 @@ public class AnomalyManager : MonoBehaviour
         switch (anomaly)
         {
             case AnomalyType.Asteroid:
-                alertText = "An asteroid has struck the ship! Some of our components have sustained damage.";
+                alertText = "An asteroid has struck the ship! Some of our components in use have sustained damage. Unused components were unharmed.";
                 break;
             case AnomalyType.ElectricalDischarge:
-                alertText = "An electrical discharge has occured! Some of our electric components (compressors, motors, and computers) have sustained mild damage.";
+                alertText = "An electrical discharge has occured! Some of our electric components (compressors, motors, and computers) in use have sustained mild damage. Unused components were unharmed";
                 break;
             case AnomalyType.SolarFlare:
-                alertText = "The dying star has put out an intense solar flare! Many of our electric components (compressors, motors, and computers) have been severely damaged.";
+                alertText = "The dying star has put out an intense solar flare! Many of our electric components (compressors, motors, and computers) in use have been severely damaged. Unused components were unharmed";
                 break;
             default:
                 alertText = "";
