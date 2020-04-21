@@ -45,6 +45,7 @@ public class MachineComponentManager : MonoBehaviour
         IEnumerable<MachineComponent> filteredComponents = from component in MachineComponents
                                                            where types.Contains(component.Type)
                                                            where component.Slot != null
+                                                           where component.Slot.Machine.statusPole.statusColor != StatusPoleLightColor.Error
                                                            select component;
 
         foreach (MachineComponent c in filteredComponents)

@@ -9,7 +9,8 @@ public enum AnomalyType
     None,
     SolarFlare,
     ElectricalDischarge,
-    Asteroid
+    Asteroid,
+    SpaceDebris,
 }
 
 public static class AnomalyTypeExtensions
@@ -24,6 +25,8 @@ public static class AnomalyTypeExtensions
                 return "Electrical Discharge";
             case AnomalyType.Asteroid:
                 return "Asteroid";
+            case AnomalyType.SpaceDebris:
+                return "Space Debris";
             default:
                 return "???";
         }
@@ -148,6 +151,14 @@ public class AnomalyManager : MonoBehaviour
                 percentOfComponentsToDamage = 0.50f;
                 damageToInflict = 0.35f;
                 break;
+            case AnomalyType.SpaceDebris:
+                foreach (MachineComponentType type in Enum.GetValues(typeof(AnomalyType)))
+                {
+                    hs.Add(type);
+                }
+                percentOfComponentsToDamage = 1.0f;
+                damageToInflict = 0.05f;
+                break;
             default:
                 return;
         }
@@ -171,6 +182,9 @@ public class AnomalyManager : MonoBehaviour
                 break;
             case AnomalyType.SolarFlare:
                 alertText = "The dying star has put out an intense solar flare! Many of our electric components (compressors, motors, and computers) in use have been severely damaged. Unused components were unharmed";
+                break;
+            case AnomalyType.SpaceDebris:
+                alertText = "The ship has been peppered by space debris! All of our components in use have been sustained very minor damage. Unused components were unharmed.";
                 break;
             default:
                 alertText = "";

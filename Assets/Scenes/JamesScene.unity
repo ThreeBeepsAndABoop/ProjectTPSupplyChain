@@ -16633,7 +16633,7 @@ PrefabInstance:
     - target: {fileID: 3866545021136074962, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
         type: 3}
       propertyPath: resources.Array.data[1].maxAmount
-      value: 50000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3866545021136074962, guid: 7ad6ac8bb3430406e8ab96dfa1f27a3e,
         type: 3}

@@ -12141,6 +12141,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c101f1a721ba2440ab93a74310479b9, type: 3}
+--- !u!4 &5989090225267351185 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5970657881344978834, guid: 1c101f1a721ba2440ab93a74310479b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 126536614932852995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8444422683070313868 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8426535967494440079, guid: 1c101f1a721ba2440ab93a74310479b9,
@@ -12153,12 +12159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e323f89f86f5e0546ad865d8798bf617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &5989090225267351185 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5970657881344978834, guid: 1c101f1a721ba2440ab93a74310479b9,
-    type: 3}
-  m_PrefabInstance: {fileID: 126536614932852995}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &126536615375560798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12266,6 +12266,11 @@ PrefabInstance:
       propertyPath: StartFilled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6208577952049481124, guid: d98151f73fe57a14bbb15ad9ba0baf8c,
+        type: 3}
+      propertyPath: StartingDamage
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d98151f73fe57a14bbb15ad9ba0baf8c, type: 3}
 --- !u!4 &3922709805399208589 stripped
@@ -12295,6 +12300,11 @@ PrefabInstance:
         type: 3}
       propertyPath: StartFilled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1739781895630038859, guid: f7b68ded364990c46ae1661e9fde036d,
+        type: 3}
+      propertyPath: StartingDamage
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2356116079050002449, guid: f7b68ded364990c46ae1661e9fde036d,
         type: 3}
@@ -12425,6 +12435,11 @@ PrefabInstance:
         type: 3}
       propertyPath: StartFilled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1739781895630038859, guid: f7b68ded364990c46ae1661e9fde036d,
+        type: 3}
+      propertyPath: StartingDamage
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2356116079050002449, guid: f7b68ded364990c46ae1661e9fde036d,
         type: 3}
@@ -12745,6 +12760,11 @@ PrefabInstance:
         type: 3}
       propertyPath: StartFilled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208577952049481124, guid: d98151f73fe57a14bbb15ad9ba0baf8c,
+        type: 3}
+      propertyPath: StartingDamage
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d98151f73fe57a14bbb15ad9ba0baf8c, type: 3}

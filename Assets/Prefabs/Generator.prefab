@@ -11781,6 +11781,21 @@ PrefabInstance:
       propertyPath: StartFilled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2049749773499213668, guid: f5dfa382608b4ae428420bb6eb412142,
+        type: 3}
+      propertyPath: StartingDamage
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2049749773499213668, guid: f5dfa382608b4ae428420bb6eb412142,
+        type: 3}
+      propertyPath: StartingDamageLowMultiplier
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2049749773499213668, guid: f5dfa382608b4ae428420bb6eb412142,
+        type: 3}
+      propertyPath: StartingDamageHighMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2844209264282851433, guid: f5dfa382608b4ae428420bb6eb412142,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -12163,6 +12178,21 @@ PrefabInstance:
       propertyPath: StartFilled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2049749773499213668, guid: f5dfa382608b4ae428420bb6eb412142,
+        type: 3}
+      propertyPath: StartingDamage
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2049749773499213668, guid: f5dfa382608b4ae428420bb6eb412142,
+        type: 3}
+      propertyPath: StartingDamageLowMultiplier
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2049749773499213668, guid: f5dfa382608b4ae428420bb6eb412142,
+        type: 3}
+      propertyPath: StartingDamageHighMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2844209264282851433, guid: f5dfa382608b4ae428420bb6eb412142,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -12295,12 +12325,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef44a17e2075fd443a383fa6d0c9ea7a, type: 3}
---- !u!4 &9209806003572674384 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5729293888339097792, guid: ef44a17e2075fd443a383fa6d0c9ea7a,
-    type: 3}
-  m_PrefabInstance: {fileID: 3480516891245623184}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8480488831851348032 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5043459858911459280, guid: ef44a17e2075fd443a383fa6d0c9ea7a,
@@ -12313,6 +12337,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd061b696cd21b488600e88fe25b8c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &9209806003572674384 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5729293888339097792, guid: ef44a17e2075fd443a383fa6d0c9ea7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3480516891245623184}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5987015836729914186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12344,6 +12374,21 @@ PrefabInstance:
         type: 3}
       propertyPath: StartFilled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290158358367043904, guid: eb011f3651f234bbaad13801bfa4600b,
+        type: 3}
+      propertyPath: StartingDamage
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290158358367043904, guid: eb011f3651f234bbaad13801bfa4600b,
+        type: 3}
+      propertyPath: StartingDamageLowMultiplier
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290158358367043904, guid: eb011f3651f234bbaad13801bfa4600b,
+        type: 3}
+      propertyPath: StartingDamageHighMultiplier
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4208205293884932128, guid: eb011f3651f234bbaad13801bfa4600b,
         type: 3}
@@ -12794,6 +12839,21 @@ PrefabInstance:
         type: 3}
       propertyPath: StartFilled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290158358367043904, guid: eb011f3651f234bbaad13801bfa4600b,
+        type: 3}
+      propertyPath: StartingDamage
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290158358367043904, guid: eb011f3651f234bbaad13801bfa4600b,
+        type: 3}
+      propertyPath: StartingDamageLowMultiplier
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290158358367043904, guid: eb011f3651f234bbaad13801bfa4600b,
+        type: 3}
+      propertyPath: StartingDamageHighMultiplier
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4208205293884932128, guid: eb011f3651f234bbaad13801bfa4600b,
         type: 3}
